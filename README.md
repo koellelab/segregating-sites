@@ -11,7 +11,7 @@ bioRxiv 2021.07.07.451508; doi: https://doi.org/10.1101/2021.07.07.451508
 Example command line to run analysis:
 ```
 python piuss.py \
-    --inputData  "../simualted_data/SEIR_prop500_full.tsv"
+    --inputData  "../simualted_data/SEIR_prop500_full.tsv" \
     --config     "config/config_simulated_full_2Dgridsearch"
 ```
 
