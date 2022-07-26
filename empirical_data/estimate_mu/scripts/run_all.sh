@@ -19,6 +19,10 @@ lythgoeData2='data/science.abg082_metadata.tsv'
 # file name for downloaded sequence data
 seqData='data/gisaid_hcov-19_2021_06_22_20.fasta'
 
+
+# --------------------------------------------------------------------------------------#
+# //// 1. ORGANIZE DATA ////
+# --------------------------------------------------------------------------------------#
 # format and concatenate data
 awk -F'\t' 'FNR==NR { map[$14] = $13; next } { $2 = map[$2]; $10 = map[$10]; print $2"\t"$10}' \
     $popaData1 $popaData4 | tail -n +2 > data/scitranslmed.abe2555_pair_accessions.tsv
@@ -66,7 +70,7 @@ awk -F'\t' '{print $2"\n"$3}' data/combined_metadata.tsv | \
 cat $seqData $refSeq > ${seqData%.fasta}_ref.fasta
 
 # --------------------------------------------------------------------------------------#
-# //// 10. ALIGN SEQUENCES FOR MU ESTIMATION ////
+# //// 2. ALIGN SEQUENCES FOR MU ESTIMATION ////
 # --------------------------------------------------------------------------------------#
 # align accessions to Wuhan/Hu-1 using MAFFT
 python3 scripts/align_seqs.py \
@@ -77,7 +81,7 @@ python3 scripts/align_seqs.py \
     --referenceName EPI_ISL_402125
 
 # --------------------------------------------------------------------------------------#
-# //// 11. GET PAIRWISE DISTANCES ////
+# //// 3. GET PAIRWISE DISTANCES ////
 # --------------------------------------------------------------------------------------#
 
 python3 scripts/pair_distances.py \
@@ -87,7 +91,7 @@ python3 scripts/pair_distances.py \
 
 
 # --------------------------------------------------------------------------------------#
-# //// 12. FORMAT DATA TABLE ////
+# //// 4. FORMAT DATA TABLE ////
 # --------------------------------------------------------------------------------------#
 cat \
     <(echo "Study\tDonor\tRecipient\t# SNPs") \
@@ -100,7 +104,7 @@ cat \
 
 
 # --------------------------------------------------------------------------------------#
-# //// 13. ESTIMATE MU ////
+# //// 5. ESTIMATE MU ////
 # --------------------------------------------------------------------------------------#
 python3 scripts/calc_mu.py \
     --distDat data/combined_metadata_dist.tsv
