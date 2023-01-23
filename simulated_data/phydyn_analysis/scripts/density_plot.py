@@ -3,6 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import datetime
 
 
 def datetime_from_numeric(numdate):
@@ -75,8 +76,8 @@ def run():
     parser.add_argument('--burnIn', default=0.10, type=float)
     parser.set_defaults(exclude=False)
     args = parser.parse_args()
-    #args.logFile = 'beast_comparison_wip/SEIR_simple_prop250_sampled_during_early45_1207.log'
-    #args.metadata = 'beast_comparison_wip/SEIR_simple_prop250_sampled_during_early45_1207.tsv'
+    #args.logFile = 'data/SEIR_mu04_seed221110_unif10_32-52.log'
+    #args.metadata = 't.tsv'
 
     #args.logFile = 'beast_comparison_wip/SEIR_simple_prop500_0928_seed123_100.log'
     if not args.absoluteTime:
@@ -98,7 +99,7 @@ def run():
       else:
         log['time_of_mrca'] = log['time_of_mrca'].apply(datetime_from_numeric).apply(datetime.date.toordinal)
 
-
+    print(log)
     # subset to just the plot data
     plot_dat = log[args.plotParams]
     plot_hpd = [hpd(plot_dat.iloc[:,0]), 

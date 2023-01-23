@@ -127,7 +127,7 @@ def generate_xml():
     template = template.replace('<!-- UCLD_MEAN_MAX -->', str(args.ucldMeanMax))
     template = template.replace('<!-- UCLD_MEAN_INIT -->', str(args.ucldMeanMax*0.2))
 
-    with open(args.alnName+'.xml', 'w') as outfile:
+    with open('.'.join(args.seqs.split('.')[:-1])+'.xml', 'w') as outfile:
         outfile.write(template)
 
 
