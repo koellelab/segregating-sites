@@ -23,18 +23,19 @@ seqData='data/gisaid_hcov-19_2021_06_22_20.fasta'
 # --------------------------------------------------------------------------------------#
 # //// 1. ORGANIZE DATA ////
 # --------------------------------------------------------------------------------------#
-# format and concatenate data
+# Popa
 awk -F'\t' 'FNR==NR { map[$14] = $13; next } { $2 = map[$2]; $10 = map[$10]; print $2"\t"$10}' \
     $popaData1 $popaData4 | tail -n +2 > data/scitranslmed.abe2555_pair_accessions.tsv
-
+# Braun
 awk -F'\t' 'FNR==NR { map[$1] = $6; next } {  $1 = map[$1]; $2 = map[$2]; print $1"\t"$2}' \
     $braunData2 $braunData4 > data/biorxiv.2021.04.30.440988_accessions.tsv
-
+# James
 awk -F'\t' 'FNR==NR { gsub(/\r/,"",$12); map[$12] = $4; next } {$1 = map[$1]; $2 = map[$2]; print $1"\t"$2}' \
     <(grep "CH1" $jamesData1) \
     <(awk -F'\t' '{print $1}' $jamesData3 | sed $'s/ to /\t/g' | tail -n +3) \
     > data/biorxiv.2020.11.15.20231993_accessions.tsv
 
+# Lythgoe
 # for the lythgoe data, we have sequence names, not gisaid accession numbers, so need to convert
 tail -n +2 $lythgoeData1 | \
     awk -F',' '{split($10,a,"_"); split($11,b,"_"); if (length(a) > 1) print a[1]"\t"b[1]}' \
@@ -69,6 +70,8 @@ awk -F'\t' '{print $2"\n"$3}' data/combined_metadata.tsv | \
 # combine with ref
 cat $seqData $refSeq > ${seqData%.fasta}_ref.fasta
 
+# get list of all sequences
+awk -F'\t' '{print $2"\n"$3}' data/combined_metadata_dist_format.tsv | grep -v 'NA' > all_seqs.tsv
 # --------------------------------------------------------------------------------------#
 # //// 2. ALIGN SEQUENCES FOR MU ESTIMATION ////
 # --------------------------------------------------------------------------------------#
@@ -109,3 +112,11 @@ cat \
 python3 scripts/calc_mu.py \
     --distDat data/combined_metadata_dist.tsv
 
+
+# --------------------------------------------------------------------------------------#
+# //// 6. PLOT MU ////
+# --------------------------------------------------------------------------------------#
+python3 scripts/plot_mu.py \
+    --muDat <(tail -n +2 data/combined_metadata_dist_format.tsv) \
+    --muEst data/combined_metadata_dist_mle.tsv \
+    --outName data/mu_est
