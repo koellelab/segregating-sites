@@ -1,6 +1,6 @@
 # Summary
 This workflow analyzes sequences data from France presented in Fig 6 and S7 of [Epidemiological inference for emerging viruses using segregating sites](https://doi.org/10.1101/2021.07.07.451508). 
-These scripts were primarily written by [Michael Martin](https://github.com/m-a-martin) who can be reached on GitHub or at [mmart59@emory.edu](mailto:mmart59@emory.edu). 
+These scripts were primarily written by [Michael Martin](https://github.com/m-a-martin) who can be reached on GitHub or at [mmart108@jhmi.edu](mailto:mmart108@jhmi.edu). 
 
 ## Data
 These analyses assume that the following data files are present in the `./data` directory. Unfortunately, due to GISAID rules we cannot share these data directly, but list of accession numbers for each file have been provided. 

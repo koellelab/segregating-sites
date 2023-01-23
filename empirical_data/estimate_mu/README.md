@@ -1,6 +1,6 @@
 # Summary
 This workflow analyzes consensus sequence from epidemiologically linked transmission pairs to estimate the P(mutation | transmission) as shown in Fig 6C of [Epidemiological inference for emerging viruses using segregating sites](https://doi.org/10.1101/2021.07.07.451508). 
-These scripts were primarily written by [Michael Martin](https://github.com/m-a-martin) who can be reached on GitHub or at [mmart59@emory.edu](mailto:mmart59@emory.edu). 
+These scripts were primarily written by [Michael Martin](https://github.com/m-a-martin) who can be reached on GitHub or at [mmart108@jhmi.edu](mailto:mmart108@jhmi.edu). 
 
 ## Data
 This analysis combines data from four studies: 
