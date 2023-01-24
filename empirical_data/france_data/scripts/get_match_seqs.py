@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import ast
 import matplotlib.pyplot as plt
+from collections import Counter
 
 def read_fasta(fp):
     name, seq = None, []
@@ -81,7 +82,7 @@ def run():
 	#args.SNPs = 'test.tsv'
 	#args.nucDict = 'scripts/nuc_dict_all.json'
 	#args.ref = 'data/EPI_ISL_402125.fasta'
-	#args.seqs = 'data/gisaid_hcov-19_2020_03_31_complete_hc_date_EHC_metadata_aligned_ref_filtered_masked.fasta'
+	#args.seqs = 'data/gisaid_hcov-19_2021_06_12_01_aligned_ref_filtered_masked.fasta'
 	#args.outName = '_match_largest_snps'
 	nuc_dict = \
 	    {np.frombuffer(key.lower().encode(), dtype=np.int8)[0]: 
@@ -101,10 +102,12 @@ def run():
 	# now read in exogeneous sequences
 	seqs_arr, seqs_names = import_fasta(args.seqs, nuc_dict=nuc_dict)
 	# get sequences which match at the clade defining sites
+	#match_seqs_names = \
+	#	pd.DataFrame(seqs_names[((seqs_arr[:,snps_locs] == snps_nucs).all(axis=1) & \
+	#	((seqs_arr[:,mask] == ref_seq_arr[mask]) | \
+	#		(seqs_arr[:,mask] == 110)).all(axis=1))])
 	match_seqs_names = \
-		pd.DataFrame(seqs_names[((seqs_arr[:,snps_locs] == snps_nucs).all(axis=1) & \
-		((seqs_arr[:,mask] == ref_seq_arr[mask]) | \
-			(seqs_arr[:,mask] == 110)).all(axis=1))])
+		pd.DataFrame(seqs_names[(seqs_arr[:,snps_locs] == snps_nucs).all(axis=1)])
 
 	match_seqs_names['date'] = \
 		pd.to_datetime(match_seqs_names[0].str.split('|', expand=True).iloc[:,-1])
