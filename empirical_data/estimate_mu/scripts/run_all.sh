@@ -110,13 +110,8 @@ cat \
 # //// 5. ESTIMATE MU ////
 # --------------------------------------------------------------------------------------#
 python3 scripts/calc_mu.py \
-    --distDat data/combined_metadata_dist.tsv
+    --distDat data/combined_metadata_dist_format.tsv
 
 
-# --------------------------------------------------------------------------------------#
-# //// 6. PLOT MU ////
-# --------------------------------------------------------------------------------------#
-python3 scripts/plot_mu.py \
-    --muDat <(tail -n +2 data/combined_metadata_dist_format.tsv) \
-    --muEst data/combined_metadata_dist_mle.tsv \
-    --outName data/mu_est
+
+
