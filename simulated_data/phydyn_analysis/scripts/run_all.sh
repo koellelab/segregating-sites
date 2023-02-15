@@ -1,101 +1,113 @@
+R0=1.6
+
 #### 1. 500 SAMPLED PROPORTIONALLY THROUGH EPIDEMIC ####
-# generate fasta
-python3 generate_fasta.py \
-	--simulationData data/SEIR_simple_simtaj.npz \
-	--sampledData data/SEIR_simple_prop500_0928_seed123.npz
-
-# make metadata file 
-grep ">" data/SEIR_simple_prop500_0928_seed123.fasta | \
-	sed 's/\>//g' | \
-	awk '{split($1, a, "_"); print $1"\t"a[5]/366}' > \
-	data/SEIR_simple_prop500_0928_seed123.tsv
-
-# generate beast xml
-python3 generate_xml.py \
-	--seqs data/SEIR_simple_prop500_0928_seed123.fasta \
-	--alnName data/SEIR_simple_prop500_0928_seed123 \
-	--metadata data/SEIR_simple_prop500_0928_seed123.tsv
-
-# run beast2
-beast2 -threads 4  data/SEIR_simple_prop500_0928_seed123.xml
-
-# generate figure
-python3 scripts/density_plot.py \
-	--metadata data/SEIR_simple_prop500_0928_seed123.tsv \
-	--logFile data/SEIR_simple_prop500_0928_seed123.log
-
-#### 2. SAMPLED UNIFORMLY BETWEEN DAYS 32 AND 52 ####
-# generate fasta
-python3 generate_fasta.py \
-	--simulationData SEIR_simple_simtaj.npz \
-	--sampledData SEIR_seed1234_unif10_sampled_during_32-52_220428.npz
-
-# make metadata file 
-grep ">" SEIR_seed1234_unif10_sampled_during_32-52_220428.fasta | \
-	sed 's/\>//g' | \
-	awk '{split($1, a, "_"); print $1"\t"a[5]/366}' > \
-	SEIR_seed1234_unif10_sampled_during_32-52_220428.tsv
-
-# make xml
-# clock rate is in units of subs/site
-# but size of alignment changes with shorter simulations
-# so, we need to convert
-# assume 0.2 subs/transmission
-# assume R0 = 1.6 trans/5 days
-# know 365 days/year
-# thus 0.2*1.6*366/5 = 23.424 substitution/year
-#know genome size of 125
-# 23.424/125 = 0.19 subs/site/year
-# set max of prior to double this 
-python3 generate_xml.py \
-	--seqs SEIR_seed1234_unif10_sampled_during_32-52_220428.fasta \
-	--alnName SEIR_seed1234_unif10_sampled_during_32-52_220428 \
-	--ucldMeanMax 0.38
-
-# run beast
-beast2 -threads 4  data/SEIR_simple_prop500_0928_seed123.xml
-
-# make figure
-python3 scripts/density_plot.py \
-	--metadata <(
-		grep ">" "data/SEIR_seed1234_unif10_sampled_during_32-52_220428.fasta" | \
-			awk '{split($1, a, "_"); print $0"\t"a[5]/366}' | \
-			sed 's/\>//g') \
-	--logFile data/SEIR_seed1234_unif10_sampled_during_32-52_220428.log
-
-
-#### 3. SAMPLED UNIFORMLY BETWEEN DAYS 32 AND 52, MU=0.4 ####
+mu=0.2
 # generate fasta
 python3 scripts/generate_fasta.py \
-	--simulationData "data/SEIR_[mu=4e-1]_seed221110/SEIR_[mu=4e-1]_seed221110_simtaj.npz" \
-	--sampledData "data/SEIR_[mu=4e-1]_seed221110/SEIR_[mu=4e-1]_seed221110_unif10_32-52.npz"
+	--simulationData data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
+	--sampledData data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling.npz
 
-# generate xml
+# make metadata file 
+grep ">" data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling.fasta | \
+	sed 's/\>//g' | \
+	awk '{split($1, a, "_"); print $1"\t"a[5]/366}' > \
+	data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling_metadata.tsv
+
 # clock rate is in units of subs/site
 # but size of alignment changes with shorter simulations
 # so, we need to convert
-# assume 0.4 subs/transmission
-# assume R0 = 1.6 trans/5 days
-# know 365 days/year
-# thus 0.4*1.6*366/5 = 46.848 substitution/year
-# know genome size of 79
-# 46.848/79 = 0.59 subs/site/year
-# set max of prior to double this 
-python3 scripts/generate_xml.py \
-	--seqs "data/SEIR_[mu=4e-1]_seed221110/SEIR_[mu=4e-1]_seed221110_unif10_32-52.fasta" \
-	--alnName "SEIR_mu04_seed221110_unif10_32-52" \
-	--ucldMeanMax 1.19
+# set max of ucld mean to:
+# 10 * subs/transmission * R0 transmissions/infection * 366 days/yr / 5 days per transmission
+first_seq=$(tail -n +2 "data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling.fasta" | head -n 1)
+genome_size=${#first_seq}
 
-# run beast
-beast2 -threads 4  data/SEIR_[mu=4e-1]_seed221110/SEIR_simple_prop500_0928_seed123.xml
+python3 scripts/generate_xml.py \
+	--seqs data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling.fasta \
+	--alnName simpleSEIR_R0=16e-1_mu2e-1_seed201234_prop500_win4 \
+	--metadata data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling_metadata.tsv \
+	--ucldMeanMax $(((10 * mu * R0 * 366 /5)/genome_size))
+
+
+# run beast2
+beast2 -threads 4  -working data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/simpleSEIR_R0=16e-1_mu2e-1_seed201234_prop500_win4.xml
 
 # generate figure
 python3 scripts/density_plot.py \
-	--metadata <(
-		grep ">" "data/SEIR_[mu=4e-1]_seed221110/SEIR_[mu=4e-1]_seed221110_unif10_32-52.fasta" | \
-			awk '{split($1, a, "_"); print $0"\t"a[5]/366}' | \
-			sed 's/\>//g') \
-	--logFile "data/SEIR_[mu=4e-1]_seed221110/SEIR_mu04_seed221110_unif10_32-52.log"
+	--metadata data/simpleSEIR_R0=24e-1_mu2e-1/seed1234_prop500_win2/seed230127_sampling_metadata.tsv \
+	--logFile data/simpleSEIR_R0=24e-1_mu2e-1/seed1234_prop500_win2/simpleSEIR_R0=24e-1_mu2e-1_seed20230127_prop500_win2.log
+
+#### 2. SAMPLED UNIFORMLY BETWEEN DAYS 32 AND 52 ####
+mu=0.2
+# generate fasta
+python3 scripts/generate_fasta.py \
+	--simulationData data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
+	--sampledData data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.npz
+
+# make metadata file 
+grep ">" data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.fasta  | \
+	sed 's/\>//g' | \
+	awk '{split($1, a, "_"); print $1"\t"a[5]/366}' > \
+	data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv
+
+
+# clock rate is in units of subs/site
+# but size of alignment changes with shorter simulations
+# so, we need to convert
+# set max of ucld mean to:
+# 10 * subs/transmission * R0 transmissions/infection * 366 days/yr / 5 days per transmission
+first_seq=$(tail -n +2 "data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.fasta" | head -n 1)
+genome_size=${#first_seq}
+
+python3 scripts/generate_xml.py \
+	--seqs data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.fasta \
+	--alnName simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52 \
+	--ucldMeanMax $(((10 * mu * R0 * 366 /5)/genome_size)) \
+	--metadata data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv
+
+# run beast
+beast2 -threads 4 -working data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.xml
+# make figure
+python3 scripts/density_plot.py \
+	--metadata data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv \
+	--logFile data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.log
+
+#### 3. SAMPLED UNIFORMLY BETWEEN DAYS 32 AND 52, MU=0.4 ####
+mu=0.4
+# generate fasta
+python3 scripts/generate_fasta.py \
+	--simulationData "data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_simtaj.npz" \
+	--sampledData "data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.npz"
+
+
+# make metadata file 
+grep ">" data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.fasta | \
+	sed 's/\>//g' | \
+	awk '{split($1, a, "_"); print $1"\t"a[5]/366}' > \
+	data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.tsv
+
+
+# clock rate is in units of subs/site
+# but size of alignment changes with shorter simulations
+# so, we need to convert
+# set max of ucld mean to:
+# 10 * subs/transmission * R0 transmissions/infection * 366 days/yr / 5 days per transmission
+first_seq=$(tail -n +2 "data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.fasta" | head -n 1)
+genome_size=${#first_seq}
+
+python3 scripts/generate_xml.py \
+	--seqs "data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.fasta" \
+	--alnName "simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" \
+	--ucldMeanMax $(((10 * mu * R0 * 366 /5)/genome_size)) \
+	--metadata data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.tsv
+
+# run beast
+beast2 -threads 4 -working data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.xml
+
+
+# generate figure
+python3 scripts/density_plot.py \
+	--metadata data/simpleSEIR_R0=16e-1_mu4e-1/seed20230201_unif10_win4_32-52/seed20230201_sampling.tsv \
+	--logFile data/simpleSEIR_R0=16e-1_mu4e-1/seed20230201_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu4e-1_seed20230201_unif10_win4_32-52.log
 
 
 

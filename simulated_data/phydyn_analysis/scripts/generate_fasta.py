@@ -2,6 +2,7 @@ import argparse
 import numpy as np
 
 
+
 def generate_sampled_fasta(sampled_individuals, genotype_info):
 	genotype_info = \
 		[genotype_info[:,0][genotype_info[:,1][i]:genotype_info[:,1][i+1]] 
@@ -13,7 +14,7 @@ def generate_sampled_fasta(sampled_individuals, genotype_info):
 	# generate random reference geome
 	# asume all frequencies and all transition probabilities are equal
 	aln_length = mutation_locations.max() + 1
-	rng = np.random.default_rng()
+	rng = np.random.default_rng(seed=111)
 	nucleotides = np.array(['A', 'C', 'T', 'G'])
 	ref_genome = rng.choice(nucleotides, size=aln_length)
 	# for each polymorphic site, pick an alt nucleotide that is different form the ref nucleotide
@@ -49,17 +50,16 @@ def run():
 	parser.add_argument('--sampledData')
 	parser.add_argument('--simulationData')
 	args = parser.parse_args()
-	#args.simulationData = 'SEIR_simple_simtaj.npz'
-	#args.sampledData = 'SEIR_seed1234_unif10_sampled_during_32-52_220428.npz'
-	#args.sampledData = 'SEIR_simple_prop500_0928_seed123.npz'
+	#args.simulationData = 'data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz'
+	#args.sampledData = 'data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.npz'
 	simulation_data = np.load(args.simulationData)
 		
-
-	#args.sampledData = 'SEIR_simple_prop500_0928_seed123.npz'
 	sampled_data = np.load(args.sampledData)
 
 	sampled_individuals = sampled_data['sampled_individuals']
 	genotype_info = simulation_data['genotype_info']
+
+	
 	aln_names, aln = generate_sampled_fasta(sampled_individuals, genotype_info)
 	with open('.'.join(args.sampledData.split('.')[0:-1])+'.fasta', 'w') as fp:
 		for idx, i in enumerate(aln_names):
