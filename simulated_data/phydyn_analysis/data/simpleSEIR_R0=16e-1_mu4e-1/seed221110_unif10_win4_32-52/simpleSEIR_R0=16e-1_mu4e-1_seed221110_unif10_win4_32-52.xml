@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.6">
+
+
+    <data
+id="simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"
+spec="Alignment"
+name="alignment">
+                        <sequence id="seq_sample_0_genotype_1_35.8_I" spec="Sequence" taxon="sample_0_genotype_1_35.8_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_1_genotype_3_35.0_I" spec="Sequence" taxon="sample_1_genotype_3_35.0_I"         totalcount="4" value="CATGATCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_2_genotype_20_33.9_I" spec="Sequence" taxon="sample_2_genotype_20_33.9_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_3_genotype_1_33.0_I" spec="Sequence" taxon="sample_3_genotype_1_33.0_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_4_genotype_1_32.8_I" spec="Sequence" taxon="sample_4_genotype_1_32.8_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_5_genotype_21_32.6_I" spec="Sequence" taxon="sample_5_genotype_21_32.6_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGTGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_6_genotype_1_32.6_I" spec="Sequence" taxon="sample_6_genotype_1_32.6_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_7_genotype_1_33.0_I" spec="Sequence" taxon="sample_7_genotype_1_33.0_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_8_genotype_1_35.7_I" spec="Sequence" taxon="sample_8_genotype_1_35.7_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_9_genotype_1_34.4_I" spec="Sequence" taxon="sample_9_genotype_1_34.4_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_10_genotype_6_36.1_I" spec="Sequence" taxon="sample_10_genotype_6_36.1_I"         totalcount="4" value="CATATTCTCGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_11_genotype_1_36.5_I" spec="Sequence" taxon="sample_11_genotype_1_36.5_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_12_genotype_32_37.7_I" spec="Sequence" taxon="sample_12_genotype_32_37.7_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTGTCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_13_genotype_18_37.2_I" spec="Sequence" taxon="sample_13_genotype_18_37.2_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_14_genotype_24_39.6_I" spec="Sequence" taxon="sample_14_genotype_24_39.6_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCCCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_15_genotype_18_37.2_I" spec="Sequence" taxon="sample_15_genotype_18_37.2_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_16_genotype_18_38.9_I" spec="Sequence" taxon="sample_16_genotype_18_38.9_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_17_genotype_6_36.5_I" spec="Sequence" taxon="sample_17_genotype_6_36.5_I"         totalcount="4" value="CATATTCTCGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_18_genotype_32_37.4_I" spec="Sequence" taxon="sample_18_genotype_32_37.4_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTGTCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_19_genotype_33_37.6_I" spec="Sequence" taxon="sample_19_genotype_33_37.6_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_20_genotype_39_43.4_I" spec="Sequence" taxon="sample_20_genotype_39_43.4_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACAATCGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_21_genotype_18_42.5_I" spec="Sequence" taxon="sample_21_genotype_18_42.5_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_22_genotype_28_44.0_I" spec="Sequence" taxon="sample_22_genotype_28_44.0_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGTCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_23_genotype_18_43.3_I" spec="Sequence" taxon="sample_23_genotype_18_43.3_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_24_genotype_6_42.7_I" spec="Sequence" taxon="sample_24_genotype_6_42.7_I"         totalcount="4" value="CATATTCTCGTAAGCGAACACCATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_25_genotype_22_40.5_I" spec="Sequence" taxon="sample_25_genotype_22_40.5_I"         totalcount="4" value="CATATTCTCGTGAGCCGACACCATGATCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_26_genotype_18_41.3_I" spec="Sequence" taxon="sample_26_genotype_18_41.3_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_27_genotype_32_41.7_I" spec="Sequence" taxon="sample_27_genotype_32_41.7_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGCCTTGTCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_28_genotype_35_40.7_I" spec="Sequence" taxon="sample_28_genotype_35_40.7_I"         totalcount="4" value="CATGATCTGGTAAGCGAACACCATGAGCTCTGCCTTATCGTGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_29_genotype_18_43.3_I" spec="Sequence" taxon="sample_29_genotype_18_43.3_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_30_genotype_22_47.6_I" spec="Sequence" taxon="sample_30_genotype_22_47.6_I"         totalcount="4" value="CATATTCTCGTGAGCCGACACCATGATCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_31_genotype_18_45.1_I" spec="Sequence" taxon="sample_31_genotype_18_45.1_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_32_genotype_39_45.3_I" spec="Sequence" taxon="sample_32_genotype_39_45.3_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACAATCGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_33_genotype_49_45.8_I" spec="Sequence" taxon="sample_33_genotype_49_45.8_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCTTATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_34_genotype_52_46.3_I" spec="Sequence" taxon="sample_34_genotype_52_46.3_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGGTAGCCTGTGCCCATAACTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_35_genotype_44_46.9_I" spec="Sequence" taxon="sample_35_genotype_44_46.9_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTATGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_36_genotype_50_46.8_I" spec="Sequence" taxon="sample_36_genotype_50_46.8_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCAGATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_37_genotype_36_47.0_I" spec="Sequence" taxon="sample_37_genotype_36_47.0_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACAATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_38_genotype_36_46.6_I" spec="Sequence" taxon="sample_38_genotype_36_46.6_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACAATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_39_genotype_48_45.7_I" spec="Sequence" taxon="sample_39_genotype_48_45.7_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCCCTGCCTTATCACGATAGCCTGTGCTTATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_40_genotype_18_48.2_I" spec="Sequence" taxon="sample_40_genotype_18_48.2_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_41_genotype_73_51.8_I" spec="Sequence" taxon="sample_41_genotype_73_51.8_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCT" />
+<sequence id="seq_sample_42_genotype_28_51.2_I" spec="Sequence" taxon="sample_42_genotype_28_51.2_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGTCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_43_genotype_22_49.9_I" spec="Sequence" taxon="sample_43_genotype_22_49.9_I"         totalcount="4" value="CATATTCTCGTGAGCCGACACCATGATCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_44_genotype_18_51.6_I" spec="Sequence" taxon="sample_44_genotype_18_51.6_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_45_genotype_36_51.1_I" spec="Sequence" taxon="sample_45_genotype_36_51.1_I"         totalcount="4" value="CATATTCTCGTGAGCCAACACCAAAAGCTCTGCCTTACCACAATAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_46_genotype_46_51.4_I" spec="Sequence" taxon="sample_46_genotype_46_51.4_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGTCTTATCACGATAGCCTGTACCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_47_genotype_46_49.8_I" spec="Sequence" taxon="sample_47_genotype_46_49.8_I"         totalcount="4" value="TATATTCTGGTAAGCGAACACCATGAGCTCTGTCTTATCACGATAGCCTGTACCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_48_genotype_37_50.8_I" spec="Sequence" taxon="sample_48_genotype_37_50.8_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCTCTGCCTTATCACGGTAGCCTGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+<sequence id="seq_sample_49_genotype_42_48.1_I" spec="Sequence" taxon="sample_49_genotype_42_48.1_I"         totalcount="4" value="CATATTCTCGTAAGCGAACAAAATGAGCCCTGCCTTATCACGATAGCATGTGCCCATATCTGCAAGTAGAAAAATCTCGGTACGCCA" />
+
+                    </data>
+
+
+    
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+
+<run id="mcmc" spec="MCMC" chainLength="150000000">
+    <state id="state" spec="State" storeEvery="5000">
+        <tree id="Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.tree.Tree" name="stateNode">
+            <trait id="dateTrait.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.tree.TraitSet" traitname="date" units="day" value="sample_0_genotype_1_35.8_I=0.0978142,sample_1_genotype_3_35.0_I=0.0956284,sample_2_genotype_20_33.9_I=0.092623,sample_3_genotype_1_33.0_I=0.0901639,sample_4_genotype_1_32.8_I=0.0896175,sample_5_genotype_21_32.6_I=0.089071,sample_6_genotype_1_32.6_I=0.089071,sample_7_genotype_1_33.0_I=0.0901639,sample_8_genotype_1_35.7_I=0.097541,sample_9_genotype_1_34.4_I=0.0939891,sample_10_genotype_6_36.1_I=0.0986339,sample_11_genotype_1_36.5_I=0.0997268,sample_12_genotype_32_37.7_I=0.103005,sample_13_genotype_18_37.2_I=0.101639,sample_14_genotype_24_39.6_I=0.108197,sample_15_genotype_18_37.2_I=0.101639,sample_16_genotype_18_38.9_I=0.106284,sample_17_genotype_6_36.5_I=0.0997268,sample_18_genotype_32_37.4_I=0.102186,sample_19_genotype_33_37.6_I=0.102732,sample_20_genotype_39_43.4_I=0.118579,sample_21_genotype_18_42.5_I=0.11612,sample_22_genotype_28_44.0_I=0.120219,sample_23_genotype_18_43.3_I=0.118306,sample_24_genotype_6_42.7_I=0.116667,sample_25_genotype_22_40.5_I=0.110656,sample_26_genotype_18_41.3_I=0.112842,sample_27_genotype_32_41.7_I=0.113934,sample_28_genotype_35_40.7_I=0.111202,sample_29_genotype_18_43.3_I=0.118306,sample_30_genotype_22_47.6_I=0.130055,sample_31_genotype_18_45.1_I=0.123224,sample_32_genotype_39_45.3_I=0.12377,sample_33_genotype_49_45.8_I=0.125137,sample_34_genotype_52_46.3_I=0.126503,sample_35_genotype_44_46.9_I=0.128142,sample_36_genotype_50_46.8_I=0.127869,sample_37_genotype_36_47.0_I=0.128415,sample_38_genotype_36_46.6_I=0.127322,sample_39_genotype_48_45.7_I=0.124863,sample_40_genotype_18_48.2_I=0.131694,sample_41_genotype_73_51.8_I=0.14153,sample_42_genotype_28_51.2_I=0.139891,sample_43_genotype_22_49.9_I=0.136339,sample_44_genotype_18_51.6_I=0.140984,sample_45_genotype_36_51.1_I=0.139617,sample_46_genotype_46_51.4_I=0.140437,sample_47_genotype_46_49.8_I=0.136066,sample_48_genotype_37_50.8_I=0.138798,sample_49_genotype_42_48.1_I=0.131421">
+                <taxa id="TaxonSet.simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="TaxonSet">
+                    <alignment idref="simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+                </taxa>
+            </trait>
+            <taxonset idref="TaxonSet.simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        </tree>
+        <parameter id="ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" name="stateNode">1E-5</parameter>
+        <parameter id="ucldStdev.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" lower="0.0" name="stateNode">0.1</parameter>
+        <stateNode id="rateCategories.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.IntegerParameter" dimension="98">1</stateNode>
+        <parameter id="seir.R0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" lower="1.0" name="stateNode">2.5</parameter>
+    </state>
+
+    <init id="RandomTree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" taxa="@simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+        <populationModel id="ConstantPopulation0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ConstantPopulation">
+            <parameter id="randomPopSize.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" name="popSize">0.1</parameter>
+        </populationModel>
+    </init>
+
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+        <distribution id="PhydynSEIR.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.distribution.STreeLikelihoodODE" equations="QL" useStateName='true' forgiveAgtY='1.0' minP="0.01">
+                <popmodel id="pdseirmodel.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.PopModelODE">
+                    <!-- SEIR MODEL -->
+                    <matrixeq id="MatrixEquation.0" spec="phydyn.model.MatrixEquation" destination="I" origin="E" type="migration">
+                      gamma0*E
+                    </matrixeq>
+                    <matrixeq id=" MatrixEquation.1" spec="phydyn.model.MatrixEquation" destination="E" origin="I" type="birth">
+                      (beta*I*S / N)
+                    </matrixeq>
+                    <matrixeq id="MatrixEquation.2" spec="phydyn.model.MatrixEquation" origin="I" type="death">
+                      gamma1*I
+                    </matrixeq>
+                    <matrixeq id="MatrixEquation.3" spec="phydyn.model.MatrixEquation" origin="R" type="nondeme">
+                      gamma1*I
+                    </matrixeq>
+                    <matrixeq id="MatrixEquation.4" spec="phydyn.model.MatrixEquation" origin="S" type="nondeme">
+                      -beta * I * S / N
+                    </matrixeq>
+
+                    <definition id="Definition.0" spec="phydyn.model.Definition" value=" N = S + E + I + R" />
+                    <definition id="Definition.1" spec="phydyn.model.Definition"
+                      value=" beta = R0*gamma1 "/>
+
+                    <!-- here using root of tree as t0 -->
+                    <popParams id="initValues" spec="phydyn.model.TrajectoryParameters" integrationSteps="500" treeIntervals="@STreeIntervals.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">   
+                        <!-- Size of susceptible population -->
+                        <initialValue id="seir.S.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="S">
+                            <parameter id="seir.S.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" lower="0.0" name="pvalue">99999</parameter>
+                        </initialValue>
+
+                        <!-- Initial number of E individuals -->
+                        <initialValue id="seir.E.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="E">
+                            <parameter id="seir.E.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" lower="0.0" name="pvalue">0</parameter>
+                        </initialValue>
+
+                        <!-- Initial number of I individuals -->
+                        <initialValue id="seir.I.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52l" spec="phydyn.model.ParamValue" pname="I">
+                            <parameter id="seir.I.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" lower="0.0" name="pvalue">1</parameter>
+                        </initialValue>
+
+                        <!-- Initial number of R individuals -->
+                        <initialValue id="seir.R.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="R">
+                            <parameter id="seir.R.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" lower="0.0" name="pvalue">0.0</parameter>
+                        </initialValue>
+                    </popParams>
+
+                    <modelParams id="rates" spec="phydyn.model.ModelParameters">
+                        <!-- Fixed parameters -->
+                        <!-- 1/Duration of E -->
+                        <param id="seir.gamma0.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="gamma0">
+                            <parameter id="seir.gamma0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" name="pvalue">183</parameter>
+                        </param>
+                        <!-- 1/Duration of I -->
+                        <param id="seir.gamma1.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="gamma1">
+                            <parameter id="seir.gamma1.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" name="pvalue">122</parameter>
+                        </param>
+                        
+                        <!-- Fitted parameters -->
+                        <!-- R0 -->
+                        <param id="seir.R0.pv.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="phydyn.model.ParamValue" pname="R0" pvalue="@seir.R0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+                        
+                    </modelParams>
+                </popmodel>
+
+                <parameter id="seir.Ne.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" name="Ne">0.1</parameter>
+                <treeIntervals id="STreeIntervals.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="STreeIntervals" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+            </distribution>
+            
+            <prior id="seir.R0.prior.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" name="distribution" x="@seir.R0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+                <Uniform id="Uniform.10" name="distr" lower="1.0" upper="50.0"/>
+            </prior>
+            <prior id="ucldMeanPrior.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" name="distribution" x="@ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+                <Uniform id="Uniform.222" name="distr" lower="0.0" upper="5.384827586206897"/>
+            </prior>
+            <prior id="ucldStdevPrior.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" name="distribution" x="@ucldStdev.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+                <Uniform id="Uniform.25" name="distr" lower="0.0" upper="2.0"/>
+            </prior>
+            
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+            <distribution id="treeLikelihood.simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ThreadedTreeLikelihood" data="@simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+                <siteModel id="SiteModel.s:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="SiteModel">
+                    <parameter id="mutationRate.s:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="gammaShape.s:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" name="shape">1.0</parameter>
+                    <parameter id="proportionInvariant.s:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="parameter.RealParameter" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel id="JC69.s:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="JukesCantor"/>
+                </siteModel>
+                <branchRateModel id="RelaxedClock.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.branchratemodel.UCRelaxedClockModel" clock.rate="@ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" rateCategories="@rateCategories.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52">
+                    <LogNormal id="LogNormalDistributionModel.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" S="@ucldStdev.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" meanInRealSpace="true" name="distr">
+                        <parameter id="RealParameter.111" spec="parameter.RealParameter" estimate="false" lower="0.0" name="M" upper="1.0">1.0</parameter>
+                    </LogNormal>
+                </branchRateModel>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <!-- clock operators -->
+    <operator id="ucldMeanScaler.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ScaleOperator" parameter="@ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" scaleFactor="0.75" weight="2.0"/>
+    <operator id="ucldStdevScaler.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ScaleOperator" parameter="@ucldStdev.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" scaleFactor="0.5" weight="2.0"/>
+    <operator id="CategoriesRandomWalk.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="IntRandomWalkOperator" parameter="@rateCategories.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="10.0" windowSize="1"/>
+    <operator id="CategoriesSwapOperator.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="SwapOperator" intparameter="@rateCategories.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="10.0"/>
+    <operator id="CategoriesUniform.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="UniformOperator" parameter="@rateCategories.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="10.0"/>
+    <operator id="relaxedUpDownOperator.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+        <up idref="ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <down idref="Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+    </operator>
+
+    <!-- Epi Model operators -->
+    <operator id="seir.R0.operator.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="RealRandomWalkOperator" parameter="@seir.R0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" useGaussian="true" weight="10.0" windowSize="0.5"/>
+
+    <!-- PhyDyn coalescent operators -->
+    <operator id="PhydynSEIRTreeScaler.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ScaleOperator" scaleFactor="0.8" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="3.0"/>
+    <operator id="PhydynSEIRTreeRootScaler.t:jsimpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="ScaleOperator" rootOnly="true" scaleFactor="0.7" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="3.0"/>
+    <operator id="PhydynSEIRUniformOperator.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="Uniform" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="30.0"/>
+    <operator id="PhydynSEIRSubtreeSlide.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="SubtreeSlide" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="15.0" size="0.8"/>
+    <operator id="PhydynSEIRNarrow.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="Exchange" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="15.0"/>
+    <operator id="PhydynSEIRWide.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="Exchange" isNarrow="false" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="3.0"/>
+    <operator id="PhydynSEIRWilsonBalding.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="WilsonBalding" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" weight="3.0"/>
+
+    <logger id="tracelog" spec="Logger" fileName="simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <log id="TreeHeight.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <log idref="ucldMean.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <log idref="ucldStdev.c:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <log idref="PhydynSEIR.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+        <log idref="seir.R0.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+    </logger>
+
+    <logger id="screenlog" spec="Logger" logEvery="1000">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="Logger" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+    </logger>
+
+    <logger id="popTrajLog" spec="Logger" fileName="seir.simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.traj" logEvery="1000">
+        <log id="trajectoryLogger" spec="phydyn.loggers.TrajectoryLogger" pointFrequency="1" popModel="@pdseirmodel.t:simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52"/>
+    </logger>
+
+
+    <operatorschedule id="OperatorSchedule" spec="OperatorSchedule"/>
+
+</run>
+
+</beast>
