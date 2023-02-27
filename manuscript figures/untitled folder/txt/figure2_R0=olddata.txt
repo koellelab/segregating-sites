@@ -1,0 +1,13 @@
+>> using 1000 out of  1000 data points (ranges from R0 = 1.0009 to 2.4994)
+>> window size = 100
+
+simul_idx    48.000000
+R0            1.569622
+logL        -79.230637
+MA          -78.083764
+Name: 48, dtype: float64 
+
+1.3894393581561015
+1.7959064543084757 
+
+1.3894 - 1.7959
