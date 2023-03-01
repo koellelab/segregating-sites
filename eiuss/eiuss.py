@@ -96,6 +96,7 @@ def run():
     reconstruct.add_argument('--n_grab', type=int)
     reconstruct.add_argument('--n_reps', type=int)
     reconstruct.add_argument('--n_save_particle', type=int)
+    reconstruct.add_argument('--outdir', type=str, default=None)
     reconstruct.add_argument('--n_trial', type=int, default=1)
 
 
@@ -196,7 +197,10 @@ def run():
         imported_data = None  ## currently, not supported
 
     if args.inference_methods == 'reconstruct':
-        output_dir = f'{args.input.replace("_segsites.tsv", "")}_reconstruct'
+        if args.outdir:
+            output_dir = args.outdir + f'/reconstruct_{",".join(args.operators)}'
+        else:
+            output_dir = f'{args.input.replace("_segsites.tsv", "")}_reconstruct_{",".join(args.operators)}'
 
         print(">>seed", args.seed, flush=True)
         params['out_name']   = f'{output_dir}/seed{args.seed}'

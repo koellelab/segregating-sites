@@ -37,7 +37,7 @@ def run(args):
     df_2Dgrid_mean.mean_logL = np.where(~np.isnan(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
     df_2Dgrid_mean.mean_logL = np.where(df_2Dgrid_mean.sim_no == args.n_iter_per_cell, df_2Dgrid_mean.mean_logL, np.nan)
 
-    plot_joint_estimation_95CI(axes[0], fig, df_2Dgrid_mean, ["R0", "timestart"], [np.nan, np.nan], gamma=6,  df = 2)
+    plot_joint_estimation_95CI(axes[0], fig, df_2Dgrid_mean, ["R0", "timestart"], [np.nan, np.nan], gamma=20,  df = 2, majortick=3)
 
 
     hey = df_2Dgrid_mean.pivot("timestart", "R0", values='sim_no')

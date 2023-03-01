@@ -76,8 +76,8 @@ def event_count_infection (rate_infection, dt, statevar_S, statevar, rng):
         if ((np.sum(count) <= S_curr) * (count <= infectious_curr)).all():
         #if (np.sum(count) <= S_curr):
             break
-        print(f'resimulating Gillespie step; may want to consider smaller dt: np.sum(count)({np.sum(count)}) > S_curr({S_curr})')
-        print (f'rate = {rate_infection} * {dt} * {infectious_curr} * {S_curr}')
+        #print(f'resimulating Gillespie step; may want to consider smaller dt: np.sum(count)({np.sum(count)}) > S_curr({S_curr})')
+        #print (f'rate = {rate_infection} * {dt} * {infectious_curr} * {S_curr}')
 
     return count
 

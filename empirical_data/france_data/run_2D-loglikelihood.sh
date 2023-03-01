@@ -1,12 +1,5 @@
 #!/bin/bash
-########################################
-# 2023-01-27
-# script for Figure 3 and 5
-# calculate the likelihood for a range of (R0, t0) combinations
-# : rng for mutations and epidemics are separated
-#   - by setting param['rng2'] = param['rng'],
-#     it works like an older version
-########################################
+
 PEM_PATH="$( cd "$( dirname "$0" )" && pwd -P )"
 echo $PEM_PATH
 # script below - - - - - -  - - - - - - -
@@ -85,8 +78,8 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
 else      ## run from local
   case $1 in
   ready)
-    sh run_remote.sh   bio_ready empirical_data/france_data/run_2D-loglikelihood
-    sh run_remote.sh  rsph_ready empirical_data/france_data/run_2D-loglikelihood
+    sh ../run_remote.sh   bio_ready empirical_data/france_data/run_2D-loglikelihood
+    sh ../run_remote.sh  rsph_ready empirical_data/france_data/run_2D-loglikelihood
     ;;
 
   run)
@@ -101,9 +94,9 @@ else      ## run from local
     #sh run_remote.sh   rsph_run session_2023-02-22.log   'for i in {10..19} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0101 2.5 4.01 ${i} --continued; done'
     #sh run_remote.sh   rsph_run session_2023-02-22.log   'for i in {10..19} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0108 2.5 4.01 ${i} --continued; done'
 
-    sh run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi1224 4.1 5.0 ${i}; done'
-    sh run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0101 4.1 5.0 ${i}; done'
-    sh run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0108 4.1 5.0 ${i}; done'
+    sh ../run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi1224 4.1 5.0 ${i}; done'
+    sh ../run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0101 4.1 5.0 ${i}; done'
+    sh ../run_remote.sh   rsph_run session_2023-02-22.log   'for i in {20..29} ;do sbatch empirical_data/france_data/run_2D-loglikelihood_server.sh  multi0108 4.1 5.0 ${i}; done'
 
 
 
@@ -123,13 +116,13 @@ else      ## run from local
   download)
     echo "-------------";
     echo "rsph"
-    sh run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200108/gridsearch_log10eta,R0
-    sh run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200101/gridsearch_log10eta,R0
-    sh run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0
+    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200108/gridsearch_log10eta,R0
+    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200101/gridsearch_log10eta,R0
+    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0
 
     echo "-------------";
     echo "bio"
-    sh run_remote.sh   bio_download   empirical_data/france_data/france_single/gridsearch_timestart,R0
+    sh ../run_remote.sh   bio_download   empirical_data/france_data/france_single/gridsearch_timestart,R0
     ;;
 
   test)

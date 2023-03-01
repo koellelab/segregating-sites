@@ -14,6 +14,7 @@ def read_and_get_mean_llk (dir_llk_grid2D, params, n_per_cell, return_original=F
     ## read files
     df_2Dgrid = pd.DataFrame({})
     for f in fnames_likelihood_randsearch:
+        print(dir_llk_grid2D + "/" + f)
         #print(f)
         tmp = pd.DataFrame(pickle.load(open(dir_llk_grid2D + "/" + f, "rb")))
         tmp.columns = ['sim_no'] + params + ['logL']

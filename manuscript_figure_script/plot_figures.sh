@@ -73,8 +73,12 @@ case $1 in
     ;;
 
   fig6)
-
-
+    cd $PEM_PATH/../empirical_data
+    python3 scripts/plot_empirical_data.py \
+        --sDat      france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
+        --muDat     estimate_mu/data/combined_metadata_dist_format.tsv \
+        --muEst     estimate_mu/data/combined_metadata_dist_mle.tsv \
+        --outName   "../manuscript figures/figure6"
     ;;
 
   fig7)
@@ -99,7 +103,7 @@ case $1 in
   fig9)
     python $PEM_PATH/fig9_plot.py \
         --figname             figure9 \
-        --observed_data       empirical_data/france_data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_match_largest_s.tsv \
+        --observed_data       empirical_data/france_data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
         --dir_particle        empirical_data/france_data/France_multiple_exp_te=191224/reconstruct_2206051 \
                               empirical_data/france_data/France_multiple_exp_te=200101/reconstruct_2206051 \
                               empirical_data/france_data/France_multiple_exp_te=200108/reconstruct_2206051
@@ -164,12 +168,22 @@ case $1 in
     ;;
 
   figS6)
-    python $PEM_PATH/fig2_plot.py \
-        --simul_data          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif13_win4/seed1234001_segsites.tsv \
-        --llk_rand            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif13_win4/seed1234001_gridsearch_R0 \
+    python $PEM_PATH/figS6_plot.py \
+        --simul_data          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin1/seed230201/seed1234001_segsites.tsv \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin2/seed230201/seed1234001_segsites.tsv \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_segsites.tsv \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin6/seed230201/seed1234001_segsites.tsv \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin10/seed230201/seed1234001_segsites.tsv \
+                              \
+        --llk_rand            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin1/seed230201/seed1234001_gridsearch_R0 \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin2/seed230201/seed1234001_gridsearch_R0 \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0 \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin6/seed230201/seed1234001_gridsearch_R0 \
+                              simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin10/seed230201/seed1234001_gridsearch_R0 \
         --true_param          1.6 \
         --xlim                1 2.5 \
-        --figname             figureS6_R0=16e-1_seed1234
+        --figname             figureS6_R0=16e-1_seed1234 \
+        --n_iter_per_cell     20
 
 
     ;;
@@ -195,12 +209,17 @@ case $1 in
   figS9)
     ## copied from empirical_data/france_data/scripts/run_all.sh
     cd $PEM_PATH/../empirical_data/france_data
-
     FranceSeqs=data/gisaid_hcov-19_2021_04_29_16.fasta
-    python3 scripts/plot_empirical_data.py \
-        --sDat ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
-        --metadata ${FranceSeqs%.fasta}_date_country.csv \
-        --outName "$PEM_PATH/../manuscript figures/figureS9"
+
+    python3 scripts/plot_tree.py \
+        --metadata < $(awk -F'\t' 'FNR==NR{hash[$2]=$3; next}{print $0"\t"hash[$1]}' \
+            ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_match_largest_seqs.tsv \
+             data/france_random_global_ref_figure.tsv)\
+        --trees data/france_random_global_ref_aligned_refine.nwk data/france_random_global_ref_aligned_refine_time.nwk \
+        --distDat ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_EPI_ISL_402125.tsv \
+        --outName "../../manuscript figures/figureS9"
+
+
 
     ;;
 
