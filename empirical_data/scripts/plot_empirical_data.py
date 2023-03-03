@@ -1,3 +1,4 @@
+import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import argparse
@@ -98,7 +99,17 @@ def plot_data(s_dat, mu_dat, mu_est, out_name):
 	for ax_idx, ax in enumerate([ax1, ax2, ax3]):
 		ax.text(-0.15, 1.05, string.ascii_uppercase[ax_idx], transform=ax.transAxes, 
 			size=16, weight='bold', va="top")
-	fig.savefig(f'{out_name}.pdf')
+
+	try:
+		fig.savefig(f'{out_name.rpartition("/")[0]}/pdf/{out_name.rpartition("/")[-1]}.pdf')
+		fig.savefig(f'{out_name.rpartition("/")[0]}/png/{out_name.rpartition("/")[-1]}.png')
+	except:
+		os.makedirs(f'{out_name.rpartition("/")[0]}/pdf/{out_name.rpartition("/")[-1]}.pdf')
+		os.makedirs(f'{out_name.rpartition("/")[0]}/png/{out_name.rpartition("/")[-1]}.png')
+		fig.savefig(f'{out_name.rpartition("/")[0]}/pdf/{out_name.rpartition("/")[-1]}.pdf')
+		fig.savefig(f'{out_name.rpartition("/")[0]}/png/{out_name.rpartition("/")[-1]}.png')
+
+
 	plt.close()
 
 

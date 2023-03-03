@@ -103,10 +103,10 @@ case $1 in
   fig9)
     python $PEM_PATH/fig9_plot.py \
         --figname             figure9 \
-        --observed_data       empirical_data/france_data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
-        --dir_particle        empirical_data/france_data/France_multiple_exp_te=191224/reconstruct_2206051 \
-                              empirical_data/france_data/France_multiple_exp_te=200101/reconstruct_2206051 \
-                              empirical_data/france_data/France_multiple_exp_te=200108/reconstruct_2206051
+        --observed_data       empirical_data/france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
+        --dir_particle        empirical_data/france_data/france_multiple_te=191224/reconstruct_log10eta,R0 \
+                              empirical_data/france_data/france_multiple_te=200101/reconstruct_log10eta,R0 \
+                              empirical_data/france_data/france_multiple_te=200108/reconstruct_log10eta,R0
     ;;
 
 ## ------------------------------
@@ -211,13 +211,15 @@ case $1 in
     cd $PEM_PATH/../empirical_data/france_data
     FranceSeqs=data/gisaid_hcov-19_2021_04_29_16.fasta
 
+    awk -F'\t' 'FNR==NR{hash[$2]=$3; next}{print $0"\t"hash[$1]}' \
+        ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_match_largest_seqs.tsv \
+        data/france_random_global_ref_figure.tsv > data/metadata.tsv
+
     python3 scripts/plot_tree.py \
-        --metadata < $(awk -F'\t' 'FNR==NR{hash[$2]=$3; next}{print $0"\t"hash[$1]}' \
-            ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_match_largest_seqs.tsv \
-             data/france_random_global_ref_figure.tsv)\
-        --trees data/france_random_global_ref_aligned_refine.nwk data/france_random_global_ref_aligned_refine_time.nwk \
-        --distDat ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_EPI_ISL_402125.tsv \
-        --outName "../../manuscript figures/figureS9"
+        --metadata  data/metadata.tsv \
+        --trees     data/france_random_global_ref_aligned_refine.nwk data/france_random_global_ref_aligned_refine_time.nwk \
+        --distDat   ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_EPI_ISL_402125.tsv \
+        --outName   "../../manuscript figures/figureS9"
 
 
 

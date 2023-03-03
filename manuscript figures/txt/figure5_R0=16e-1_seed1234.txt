@@ -1,0 +1,48 @@
+--- R0 ----
+
+R0            2.800000
+timestart    24.000000
+mean_logL   -11.326537
+sim_no       20.000000
+Name: 924, dtype: float64 
+
+1.0
+6.0 
+
+2.800, 1.000 - 6.000
+--- timestart ----
+
+R0            2.800000
+timestart    24.000000
+mean_logL   -11.326537
+sim_no       20.000000
+Name: 924, dtype: float64 
+
+-52.0
+30.0 
+
+24.000, -52.000 - 30.000
+--- R0 ----
+
+R0            1.800000
+timestart    14.000000
+mean_logL   -13.825529
+sim_no       20.000000
+Name: 429, dtype: float64 
+
+1.0
+6.0 
+
+1.800, 1.000 - 6.000
+--- timestart ----
+
+R0            1.800000
+timestart    14.000000
+mean_logL   -13.825529
+sim_no       20.000000
+Name: 429, dtype: float64 
+
+-60.0
+30.0 
+
+14.000, -60.000 - 30.000

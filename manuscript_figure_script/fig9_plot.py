@@ -31,12 +31,14 @@ def extract_statevar_and_segsite(dir, n_patricle_to_extract):
             trim_statevar = (convert_to_matlab_date("2019/12/24") <= particle[0][:, 0])
             statevar.append(particle[0][trim_statevar])
 
+            print(statevar[-1][:5, :])
+
             tmp_infected_outside = np.array(particle[1])
             trim_infected = (convert_to_matlab_date("2019/12/24") <= tmp_infected_outside[:, 0])
             infected_outside.append(tmp_infected_outside[trim_infected])
 
-            trim_s = (737839 <= particle[2][:, 1]) * (particle[2][:, 1] <= 737867)
-            n_segregating.append(particle[2][trim_s])
+            trim_s = (737839 <= particle[1][:, 1]) * (particle[1][:, 1] <= 737867)
+            n_segregating.append(particle[1][trim_s])
 
     return statevar, n_segregating, infected_outside
 
@@ -55,24 +57,32 @@ def run(args):
     for i, dir_particle in enumerate(args.dir_particle):
         df_particle_statevar, df_n_segregating, infected_outside = extract_statevar_and_segsite(dir_particle, 1)  ## n_patricle_to_extract_per_combo
 
+        compartments = ['S', 'E1', 'E2_l', 'I_l', 'E2_h', 'I_h', 'R', 'O_l', 'O_h']
+        compartments = {compartments[i]: i - 1 for i in range(len(compartments))}
+        idx_all_infected = np.array([compartments[x] for x in ['E1', 'E2_l', 'I_l', 'E2_h', 'I_h']])
+        idx_sum_for_N = np.array([compartments[x] for x in ['S', 'E1', 'E2_l', 'I_l', 'E2_h', 'I_h', 'R']])
+        idx_sum_for_cumR = np.array([compartments[x] for x in ['E1', 'E2_l', 'I_l', 'E2_h', 'I_h',  'R']])
+
+
         cum_R = []
         total_infected = []
         for j in np.random.choice(len(df_n_segregating), size=10):
             n_segregating_over_time(axes[0, i], df_n_segregating[j], particle=True)
 
             df_state = df_particle_statevar[j]
-            denom = df_state[0, 1:-1].sum()
-            state_cumR = (df_state[:, -1]/denom) * 100
-            state_all_infected = (df_state[:, 2:-1].sum(axis=1)/denom) * 100
+
+            denom       =         df_state[0, idx_sum_for_N   +2].sum()
+            state_cumR  =        ((df_state[:,idx_sum_for_cumR+2]/denom) * 100).sum(axis=1)
+            state_all_infected = (df_state[:,idx_all_infected +2].sum(axis=1)/denom) * 100
 
             axes[1, i].plot(df_state[:, 0], state_all_infected, c="k", alpha=0.1, label="_nolegend_")
             axes[2, i].plot(df_state[:, 0], state_cumR, c="k", alpha=0.1, label="_nolegend_")
             axes[3, i].plot(infected_outside[j][:, 0], infected_outside[j][:, 1].cumsum(), c="k", alpha=0.1, label="_nolegend_")
 
-            print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-                   df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
-                   convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-                   infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
+            # print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+            #        df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
+            #        convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+            #        infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
 
             ## save for printing
             filter = (df_state[:, 0] < 737864 + 0.0001) * ( 737864 - 0.0001 < df_state[:, 0])
@@ -105,7 +115,8 @@ def run(args):
             else:
                 axes[j, i].set_xlim([x_ticks_statevar.min(), x_ticks_statevar.max()+2])
                 axes[j, i].xaxis.set_major_locator(FixedLocator(x_ticks_statevar))  # FixedLocator
-                axes[j, i].set_yscale('log')
+                if j != 3:
+                    axes[j, i].set_yscale('log')
 
             if j == 3:
                 axes[j, i].yaxis.set_major_locator(FixedLocator([1e0, 1e1, 1e2, 1e3, 1e4, 1e5]))
@@ -118,6 +129,7 @@ def run(args):
         axes[2, 0].set_ylabel("Seroprevalence (%)", fontsize=9)
         axes[3, 0].set_ylabel("Cumulative infections from\noutside-of-France contacts", fontsize=8)
 
+        axes[0, i].set_xlabel(None, fontsize=9)
         axes[3, i].set_xlabel("Days post index case", fontsize=9)
 
         axes[1, i].set_ylim([axes[1, i].get_ylim()[0], 0.015 * 100])

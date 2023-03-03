@@ -43,7 +43,10 @@ def run(params, imported_data, config):
     llk = np.where(~np.isnan(llk), llk, 0)
     print(df_mean_llk.sort_values('mean_logL', ascending=False).iloc[:10].to_string())
 
-    sampled_idx = params['rng'].choice(len(df_mean_llk.mean_logL), size=params["n_reps"], p= llk/llk.sum(), replace=True)
+    ## choose top 10
+    df_mean_llk = df_mean_llk.sort_values('mean_logL', ascending=False)
+    sampled_idx = np.arange(params["n_reps"])
+    #sampled_idx = params['rng'].choice(len(df_mean_llk.mean_logL), size=params["n_reps"], p= llk/llk.sum(), replace=True)
     sampled_parameter = df_mean_llk.iloc[sampled_idx][params["operators"]]
     combos = [tuple([idx] + sampled_parameter.iloc[idx].values.tolist()) for idx in range(len(sampled_parameter))]
 

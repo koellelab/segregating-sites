@@ -51,22 +51,28 @@ def run(params, imported_data, config):
         files_done = [x for x in os.listdir(file_location) \
                       if x.find(params['out_name'].rpartition("/")[-1]+ ".pkl") > -1 or
                         (x.find(params['out_name'].rpartition("/")[-1]+ "_continued") > -1 and x.find(".pkl") > -1)]
+        # last_combo_idx = 0
+        # for file in files_done:
+        #     pkl = pickle.load(open(file_location + "/" + file, "rb"))
+        #     last_combo_idx += np.where(pkl.sum(axis=1) == 0)[0].min()
+        #
+        # combos = combos[last_combo_idx:]
 
-        print(files_done)
-
-        last_combo_idx = 0
+        last_combos = []
         for file in files_done:
             pkl = pickle.load(open(file_location + "/" + file, "rb"))
-            last_combo_idx += np.where(pkl.sum(axis=1) == 0)[0].min()
+            last_combos += [x[:-1] for x in pkl.tolist() if not sum(x) == 0]
 
-        combos = combos[last_combo_idx:]
+        combos = [list(x) for x in combos if not np.any([np.allclose(x,y) for y in last_combos])]
+        combos = sorted(combos, key=lambda x: (x[2], x[1]))
+
         params['out_name'] += '_continued' + str(len([x for x in files_done if x.find('_continued') > -1]))
-
         print("\n" + "- " * 30)
         print(f'>>>> related files: {files_done}')
-        print(f'>>>> continuing the gridsearch from combo: {combos}')
+        print(f'>>>> continuing the gridsearch from combo: ')
+        for i in combos:
+            print(f'{i}')
         print("\n" + "- " * 30, flush=True)
-
 
 
 
