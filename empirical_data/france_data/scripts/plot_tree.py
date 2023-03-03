@@ -187,7 +187,7 @@ def run():
     _ = [tick.set_horizontalalignment('right') for tick in axs[2].get_xticklabels()]
     x_pos = [0,0,-0.075]
     for ax_idx, ax in enumerate(axs):
-            ax.text(x_pos[ax_idx], 1.05, string.ascii_uppercase[ax_idx], transform=ax.transAxes, 
+            ax.text(x_pos[ax_idx], 1.05, string.ascii_lowercase[ax_idx], transform=ax.transAxes,
                 size=16, weight='bold', va="top", color='#333333')
 
     try:
