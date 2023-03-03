@@ -1,3 +1,4 @@
+import os
 import argparse
 import baltic as bt
 import matplotlib.pyplot as plt
@@ -189,7 +190,15 @@ def run():
             ax.text(x_pos[ax_idx], 1.05, string.ascii_uppercase[ax_idx], transform=ax.transAxes, 
                 size=16, weight='bold', va="top", color='#333333')
 
-    fig.savefig(args.outName + '.pdf')
+    try:
+        fig.savefig(f'{args.outName.rpartition("/")[0]}/pdf/{args.outName.rpartition("/")[-1]}.pdf')
+        fig.savefig(f'{args.outName.rpartition("/")[0]}/png/{args.outName.rpartition("/")[-1]}.png')
+    except:
+        os.makedirs(f'{args.outName.rpartition("/")[0]}/pdf/{args.outName.rpartition("/")[-1]}.pdf')
+        os.makedirs(f'{args.outName.rpartition("/")[0]}/png/{args.outName.rpartition("/")[-1]}.png')
+        fig.savefig(f'{args.outName.rpartition("/")[0]}/pdf/{args.outName.rpartition("/")[-1]}.pdf')
+        fig.savefig(f'{args.outName.rpartition("/")[0]}/png/{args.outName.rpartition("/")[-1]}.png')
+
     plt.close()
 
 
