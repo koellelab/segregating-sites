@@ -65,10 +65,10 @@ case $1 in
         --simul_data_highmu   simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_segsites.tsv \
         --llk_2dgrid_highmu   simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_gridsearch_R0,timestart\
         \
-        --phydyn_log_lowmu    simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.log \
-        --phydyn_meta_lowmu   simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv \
-        --phydyn_log_highmu   simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.log \
-        --phydyn_meta_highmu  simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.tsv
+        --phydyn_log_lowmu    simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/phydyn_result/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.log \
+        --phydyn_meta_lowmu   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/phydyn_result/seed230201_sampling.tsv \
+        --phydyn_log_highmu   simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/phydyn_result/simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.log \
+        --phydyn_meta_highmu  simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/phydyn_result/seed230201_sampling.tsv
 
     ;;
 

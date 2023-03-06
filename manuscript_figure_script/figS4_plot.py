@@ -205,7 +205,7 @@ def run(dir_simulated_dataset, dir_likelihood_randsearch, true_param, xlim, ylim
     txt.close()
 
     ## save figure
-    fig.suptitle(figname)
+    #fig.suptitle(figname)
     fig.tight_layout(pad=0.5)
     fig.savefig(f'manuscript figures/pdf/{figname}.pdf')
     fig.savefig(f'manuscript figures/png/{figname}.png')

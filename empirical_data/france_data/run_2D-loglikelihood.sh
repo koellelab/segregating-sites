@@ -129,8 +129,8 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
 else      ## run from local
   case $1 in
   ready)
-    #sh ../run_remote.sh   bio_ready empirical_data/france_data/run_2D-loglikelihood
-    sh ../run_remote.sh  rsph_ready empirical_data/france_data/run_2D-loglikelihood
+    sh ../run_remote.sh   bio_ready empirical_data/france_data/run_2D-loglikelihood
+    #sh ../run_remote.sh  rsph_ready empirical_data/france_data/run_2D-loglikelihood
     ;;
 
   run)
@@ -166,14 +166,14 @@ else      ## run from local
 
   download)
     echo "-------------";
-    echo "rsph"
-    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200108/gridsearch_log10eta,R0
-    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200101/gridsearch_log10eta,R0
-    sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0
+    #echo "rsph"
+    #sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200108/gridsearch_log10eta,R0
+    #sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=200101/gridsearch_log10eta,R0
+    #sh ../run_remote.sh  rsph_download   empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0
 
     echo "-------------";
     echo "bio"
-    #sh ../run_remote.sh   bio_download   empirical_data/france_data/france_single/gridsearch_timestart,R0
+    sh ../run_remote.sh   bio_download   empirical_data/france_data/france_single/gridsearch_timestart,R0
     ;;
 
   test)

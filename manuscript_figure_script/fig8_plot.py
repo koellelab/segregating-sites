@@ -73,8 +73,8 @@ def run(args):
     ## add subplot label
     label = "ABC".lower()
     for i in range(len(label)):
-        xloc = -0.20;
-        yloc = 1.05
+        xloc = -0.27;
+        yloc = 1.1
 
         axes[i].text(xloc, yloc, label[i], transform=axes[i].transAxes, fontsize=14, fontweight='bold', va='top',
                      ha='left')

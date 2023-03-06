@@ -4,7 +4,7 @@ timestart    737829.000000
 R0                3.000000
 mean_logL       -28.678198
 sim_no           10.000000
-Name: 616, dtype: float64 
+Name: 642, dtype: float64 
 
 1.6
 4.2 
@@ -16,7 +16,7 @@ timestart    737829.000000
 R0                3.000000
 mean_logL       -28.678198
 sim_no           10.000000
-Name: 616, dtype: float64 
+Name: 642, dtype: float64 
 
 737784.0
 737835.0 
