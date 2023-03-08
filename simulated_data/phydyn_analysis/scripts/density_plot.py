@@ -146,7 +146,7 @@ def run():
 
     # density
     sns.kdeplot(data=plot_dat, x=args.plotParams[0], y=args.plotParams[1], ax=ax2, 
-    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--')
+    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--', bw_adjust=0.5)
 
     ax2.set_xlabel(r'$R_0$')
     ax2.set_ylabel('time of MRCA (days)')
