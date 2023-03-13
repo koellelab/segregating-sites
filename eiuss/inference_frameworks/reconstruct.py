@@ -85,7 +85,12 @@ def run(params, imported_data, config):
 
         # save particle
         save_idx = params['rng'].choice(len(particles), size=params['n_save_particle'])
-        saved_particles = [[particles[i].statevar, particles[i].n_segregating, particles[i].n_genotype, particles[i].n_site] for i in save_idx]
+
+        if hasattr(particles[0], "infected_from_outside"):
+            saved_particles = [[particles[i].statevar, particles[i].n_segregating, particles[i].n_genotype, particles[i].n_site] for i in save_idx]
+        else:
+            saved_particles = [
+                [particles[i].statevar, particles[i].n_segregating, particles[i].n_genotype, particles[i].n_site, particles[i].infected_from_outside] for i in save_idx]
 
         pickle.dump(saved_particles, open(params['out_name'] + str(combo).replace(")", f", {df_mean_llk.iloc[sampled_idx[combo_idx]]['mean_logL']:.3f})") +  '.pkl', 'wb'))
 

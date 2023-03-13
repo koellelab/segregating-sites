@@ -23,13 +23,13 @@ def run(args):
     for i, dir_llk_2Dgrid in enumerate(args.llk_2dgrid):
         df_2Dgrid_mean, _ = read_and_get_mean_llk(dir_llk_2Dgrid, args.params, args.n_iter_per_cell, return_original = True)
 
-        print(df_2Dgrid_mean.iloc[:10].to_string())
+        print(df_2Dgrid_mean.sort_values('mean_logL', ascending=False).iloc[:10].to_string())
         df_2Dgrid_mean.to_csv(dir_llk_2Dgrid + "/meanllk.tsv", sep="\t", index=False)
 
         df_2Dgrid_mean.mean_logL = np.where(~np.isnan(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
         df_2Dgrid_mean.mean_logL = np.where(~np.isinf(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
         #df_2Dgrid_mean.mean_logL = np.where(df_2Dgrid_mean.sim_no >= args.n_iter_per_cell, df_2Dgrid_mean.mean_logL, np.nan)
-        plot_joint_estimation_95CI(axes[i], fig, df_2Dgrid_mean, ['R0', 'log10eta'], [np.nan, np.nan], gamma=12, majortick=5, majortick_y=5, df = 2)
+        plot_joint_estimation_95CI(axes[i], fig, df_2Dgrid_mean, ['R0', 'log10eta'], [np.nan, np.nan], gamma=55, majortick=5, majortick_y=5, df = 2)
 
         ## axis
         axes[i].set_yticklabels(["%.1f" % (np.unique(df_2Dgrid_mean.log10eta)[j])
