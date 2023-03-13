@@ -42,6 +42,9 @@ case $1 in
     python $PEM_PATH/fig3_plot.py \
       --llk_2dgrid          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0,timestart \
       --figname             figure3_R0=16e-1_seed1234_full
+      --phydyn_meta
+      --phydyn_log
+
     ;;
 
   fig4)
