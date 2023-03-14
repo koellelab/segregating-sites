@@ -17,9 +17,9 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
           --operators         log10eta R0 \
           --n_SMC_particles   200 \
           --n_grab            20 \
-          --n_reps            10 \
+          --n_reps            1 \
           --n_save_particle   1 \
-          --seed              2023
+          --seed              2023${2}
     ;;
 
 
@@ -34,9 +34,9 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
           --operators         log10eta R0 \
           --n_SMC_particles   200 \
           --n_grab            20 \
-          --n_reps            10 \
+          --n_reps            1 \
           --n_save_particle   1 \
-          --seed              2023
+          --seed              2023${2}
     ;;
 
 
@@ -51,9 +51,9 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
           --operators         log10eta R0 \
           --n_SMC_particles   200 \
           --n_grab            20 \
-          --n_reps            10 \
+          --n_reps            1 \
           --n_save_particle   1 \
-          --seed              2023
+          --seed              2023${2}
     ;;
 
   esac
@@ -65,9 +65,9 @@ else      ## run from local
     ;;
 
   run)
-    sh ../run_remote.sh   bio_run       ../session_2023-03-01.log   'sbatch empirical_data/france_data/run_reconstruct_server.sh  multi1224'
-    sh ../run_remote.sh   bio_run       ../session_2023-03-01.log   'sbatch empirical_data/france_data/run_reconstruct_server.sh  multi0101'
-    sh ../run_remote.sh   bio_run       ../session_2023-03-01.log   'sbatch empirical_data/france_data/run_reconstruct_server.sh  multi0108'
+    sh ../run_remote.sh   bio_run       ../session_2023-03-13.log   'for i in {0..9}; do sbatch empirical_data/france_data/run_reconstruct_server.sh  multi1224 ${i}; done'
+    sh ../run_remote.sh   bio_run       ../session_2023-03-13.log   'for i in {0..9}; do sbatch empirical_data/france_data/run_reconstruct_server.sh  multi0101 ${i}; done'
+    sh ../run_remote.sh   bio_run       ../session_2023-03-13.log   'for i in {0..9}; do sbatch empirical_data/france_data/run_reconstruct_server.sh  multi0108 ${i}; done'
     ;;
 
   download)

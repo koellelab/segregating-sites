@@ -43,16 +43,16 @@ def run(params, imported_data, config):
     llk = np.where(~np.isnan(llk), llk, 0)
     print(df_mean_llk.sort_values('mean_logL', ascending=False).iloc[:10].to_string())
 
-    ## choose top 10
-    df_mean_llk = df_mean_llk.sort_values('mean_logL', ascending=False)
-    sampled_idx = np.arange(params["n_reps"])
-    #sampled_idx = params['rng'].choice(len(df_mean_llk.mean_logL), size=params["n_reps"], p= llk/llk.sum(), replace=True)
+
+    #df_mean_llk = df_mean_llk.sort_values('mean_logL', ascending=False)    ## choose top 10
+    #sampled_idx = np.arange(params["n_reps"])                              ## choose top 10
+    sampled_idx = params['rng'].choice(len(df_mean_llk.mean_logL), size=params["n_reps"], p= llk/llk.sum(), replace=True)
     sampled_parameter = df_mean_llk.iloc[sampled_idx][params["operators"]]
     combos = [tuple([idx] + sampled_parameter.iloc[idx].values.tolist()) for idx in range(len(sampled_parameter))]
 
     print("\n" + "- " * 30)
     print(f'>>>> reconstruct state variables with from combo:{combos}')
-    print(df_mean_llk.iloc[sampled_idx].to_string())
+    print(df_mean_llk.iloc[sampled_idx].sort_values('mean_logL', ascending=False).to_string())
     print("\n" + "- " * 30)
 
 
@@ -86,7 +86,7 @@ def run(params, imported_data, config):
         # save particle
         save_idx = params['rng'].choice(len(particles), size=params['n_save_particle'])
 
-        if hasattr(particles[0], "infected_from_outside"):
+        if not hasattr(particles[0], "infected_from_outside"):
             saved_particles = [[particles[i].statevar, particles[i].n_segregating, particles[i].n_genotype, particles[i].n_site] for i in save_idx]
         else:
             saved_particles = [

@@ -33,7 +33,7 @@ def extract_statevar_and_segsite(dir, n_patricle_to_extract):
 
             print(statevar[-1][:5, :])
 
-            tmp_infected_outside = np.array(particle[1])
+            tmp_infected_outside = np.array(particle[-1])
             trim_infected = (convert_to_matlab_date("2019/12/24") <= tmp_infected_outside[:, 0])
             infected_outside.append(tmp_infected_outside[trim_infected])
 
@@ -79,10 +79,10 @@ def run(args):
             axes[2, i].plot(df_state[:, 0], state_cumR, c="k", alpha=0.1, label="_nolegend_")
             axes[3, i].plot(infected_outside[j][:, 0], infected_outside[j][:, 1].cumsum(), c="k", alpha=0.1, label="_nolegend_")
 
-            # print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-            #        df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
-            #        convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-            #        infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
+             # print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+             #        df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
+             #        convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+             #        infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
 
             ## save for printing
             filter = (df_state[:, 0] < 737864 + 0.0001) * ( 737864 - 0.0001 < df_state[:, 0])
@@ -115,8 +115,8 @@ def run(args):
             else:
                 axes[j, i].set_xlim([x_ticks_statevar.min(), x_ticks_statevar.max()+2])
                 axes[j, i].xaxis.set_major_locator(FixedLocator(x_ticks_statevar))  # FixedLocator
-                if j != 3:
-                    axes[j, i].set_yscale('log')
+                #if j != 3:
+                axes[j, i].set_yscale('log')
 
             if j == 3:
                 axes[j, i].yaxis.set_major_locator(FixedLocator([1e0, 1e1, 1e2, 1e3, 1e4, 1e5]))
@@ -177,6 +177,12 @@ if __name__ == "__main__":
         os.chdir(os.getcwd().replace("manuscript_figure_script", ""))
         parser = argparse.ArgumentParser()
         args = parser.parse_args()
+
+        args.figname = "hey"
+        args.observed_data = "empirical_data/france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv"
+        args.dir_particle  = ["empirical_data/france_data/france_multiple_te=191224/reconstruct_log10eta,R0",
+                              "empirical_data/france_data/france_multiple_te=200101/reconstruct_log10eta,R0",
+                              "empirical_data/france_data/france_multiple_te=200108/reconstruct_log10eta,R0"]
 
     print(args)
     hey = run(args)

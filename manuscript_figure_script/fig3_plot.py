@@ -267,7 +267,7 @@ def run(dir_llk_2Dgrid, dir_phydyn_density_metadata, dir_phydyn_density_logFile,
     axes[3].set_ylim(axes[2].get_ylim())
 
     ## axis label
-    axes[2].xaxis.set_major_locator(FixedLocator(np.arange(1, 2.51, 0.3)))  # FixedLocator
+    axes[2].xaxis.set_major_locator(FixedLocator(np.arange(1, 2.51, 0.5)))  # FixedLocator
     axes[2].xaxis.set_minor_locator(FixedLocator(np.arange(1, 2.51, 0.1)))  # FixedLocator
     axes[2].yaxis.set_major_locator(FixedLocator(np.arange(-50, 40.01, 10)))  # FixedLocator
     axes[2].yaxis.set_minor_locator(FixedLocator(np.arange(-50, 40.01, 2)))  # FixedLocator

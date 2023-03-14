@@ -23,12 +23,14 @@ def run(args):
     for i, dir_llk_2Dgrid in enumerate(args.llk_2dgrid):
         df_2Dgrid_mean, _ = read_and_get_mean_llk(dir_llk_2Dgrid, args.params, args.n_iter_per_cell, return_original = True)
 
+
         print(df_2Dgrid_mean.sort_values('mean_logL', ascending=False).iloc[:10].to_string())
-        df_2Dgrid_mean.to_csv(dir_llk_2Dgrid + "/meanllk.tsv", sep="\t", index=False)
+        df_2Dgrid_mean[df_2Dgrid_mean.sim_no == args.n_iter_per_cell].to_csv(dir_llk_2Dgrid + "/meanllk.tsv", sep="\t", index=False)
 
         df_2Dgrid_mean.mean_logL = np.where(~np.isnan(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
         df_2Dgrid_mean.mean_logL = np.where(~np.isinf(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
-        #df_2Dgrid_mean.mean_logL = np.where(df_2Dgrid_mean.sim_no >= args.n_iter_per_cell, df_2Dgrid_mean.mean_logL, np.nan)
+        df_2Dgrid_mean.mean_logL = np.where(df_2Dgrid_mean.sim_no >= args.n_iter_per_cell, df_2Dgrid_mean.mean_logL, np.nan)
+
         plot_joint_estimation_95CI(axes[i], fig, df_2Dgrid_mean, ['R0', 'log10eta'], [np.nan, np.nan], gamma=55, majortick=5, majortick_y=5, df = 2)
 
         ## axis
@@ -111,12 +113,14 @@ if __name__ == "__main__":
         parser = argparse.ArgumentParser()
         args = parser.parse_args()
 
+        print(os.getcwd())
         args.figname = "figure8"
         args.n_iter_per_cell = 10
-        args.llk_2dgrid = ["empirical_data/france_data/france_multiple_te=191224/gridsearch_R0,log10eta",
-                           "empirical_data/france_data/france_multiple_te=200101/gridsearch_R0,log10eta",
-                           "empirical_data/france_data/france_multiple_te=200108/gridsearch_R0,log10eta"]
-
+        args.llk_2dgrid = ["empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0",
+                           "empirical_data/france_data/france_multiple_te=200101/gridsearch_log10eta,R0",
+                           "empirical_data/france_data/france_multiple_te=200108/gridsearch_log10eta,R0"]
+        args.params = ["R0", "log10eta"]
+#"/Users/yeongseon/Dropbox/PhD_Emory_university/1_projects/Project_seg_site/segregating-sites/empirical_data/france_data/france_multiple_te=191224/gridsearch_log10eta,R0"
 
 
 

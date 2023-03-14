@@ -139,14 +139,14 @@ def run():
 
 
     # scatter
-    ax2.scatter(plot_dat.iloc[:,0], 
+    ax2.scatter(plot_dat.iloc[:,0],
     	plot_dat.iloc[:,1],
-    	alpha=0.1, 
+    	alpha=0.1,
     	color='#333333')
 
     # density
-    sns.kdeplot(data=plot_dat, x=args.plotParams[0], y=args.plotParams[1], ax=ax2, 
-    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--', bw_adjust=0.5)
+    sns.kdeplot(data=plot_dat, x=args.plotParams[0], y=args.plotParams[1], ax=ax2,
+    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles=':', bw_adjust=0.15)#, cut = 0)
 
     ax2.set_xlabel(r'$R_0$')
     ax2.set_ylabel('time of MRCA (days)')

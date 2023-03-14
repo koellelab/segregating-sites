@@ -3,7 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-
+import datetime
 
 def datetime_from_numeric(numdate):
     # borrowed from the treetime utilities
@@ -65,18 +65,6 @@ def hpd(dat, qs=[0.025, 0.5, 0.975]):
 
 
 def run(axes = None, metadata = None, logFile = None, argv=[]):
-    ## modified by Yeongseon Park
-    ## modified date: 2020-04-27
-    if axes == None:
-        fig = plt.figure()
-        gs = fig.add_gridspec(6, 6)
-        ax1 = fig.add_subplot(gs[:2, :4])
-        ax2 = fig.add_subplot(gs[2:, :4])
-        ax3 = fig.add_subplot(gs[2:, 4:])
-
-    else:
-        ax1, ax2, ax3 = axes
-
     parser = argparse.ArgumentParser()
     # input files
     parser.add_argument('--metadata')
@@ -94,9 +82,9 @@ def run(axes = None, metadata = None, logFile = None, argv=[]):
         args.metadata = metadata
     if logFile:
         args.logFile = logFile
+
     if not args.absoluteTime:
         args.absoluteTime = pd.read_csv(args.metadata, sep='\t', header=None)[1].max()
-
 
 
 
@@ -114,19 +102,28 @@ def run(axes = None, metadata = None, logFile = None, argv=[]):
       else:
         log['time_of_mrca'] = log['time_of_mrca'].apply(datetime_from_numeric).apply(datetime.date.toordinal)
 
-
+    print(log)
     # subset to just the plot data
     plot_dat = log[args.plotParams]
     plot_hpd = [hpd(plot_dat.iloc[:,0]), 
     	hpd(plot_dat.iloc[:,1])]
 
+    # set up plot
+    if axes == None:
+        fig = plt.figure()
+        gs = fig.add_gridspec(6, 6)
+        ax1 = fig.add_subplot(gs[:2, :4])
+        ax2 = fig.add_subplot(gs[2:, :4])
+        ax3 = fig.add_subplot(gs[2:, 4:])
+
+    else:
+        ax1, ax2, ax3 = axes
 
     # X axis density
     sns.kdeplot(data=plot_dat, x=args.plotParams[0], ax=ax1, color='#333333')
     # add vertical lines for 95% hpd
-    #ax1.axvline(plot_hpd[0][0], color='firebrick', ls='--')
-    #ax1.axvline(plot_hpd[0][2], color='firebrick', ls='--')
-    ax1.axvspan(plot_hpd[0][0], plot_hpd[0][2], alpha=0.1, color='red')
+    ax1.axvline(plot_hpd[0][0], color='firebrick', ls='--')
+    ax1.axvline(plot_hpd[0][2], color='firebrick', ls='--')
     print (f'x axis: {plot_hpd[0][0]} - {plot_hpd[0][2]}')
     # add vertical line for true value
     ax1.axvline(args.trueR0, ls='--')
@@ -140,9 +137,8 @@ def run(axes = None, metadata = None, logFile = None, argv=[]):
     # Y axis density
     sns.kdeplot(data=plot_dat, y=args.plotParams[1], ax=ax3, color='#333333')
     # add vertical lines for 95% hpd
-    #ax3.axhline(plot_hpd[1][0], color='firebrick', ls='--')
-    #ax3.axhline(plot_hpd[1][2], color='firebrick', ls='--')
-    ax3.axhspan(plot_hpd[1][0], plot_hpd[1][2], alpha=0.1, color='red')
+    ax3.axhline(plot_hpd[1][0], color='firebrick', ls='--')
+    ax3.axhline(plot_hpd[1][2], color='firebrick', ls='--')
     print(f'y axis: {plot_hpd[1][0]} - {plot_hpd[1][2]}')
     # add vertical line for true value
     #ax3.axhline(args.trueT0, ls='--')
@@ -162,8 +158,7 @@ def run(axes = None, metadata = None, logFile = None, argv=[]):
 
     # density
     sns.kdeplot(data=plot_dat, x=args.plotParams[0], y=args.plotParams[1], ax=ax2,
-    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--')
-
+    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--')#, bw_adjust=0.1)
     # lines for true value
     #ax2.axhline(args.trueT0, color='steelblue', ls='--')
     ax2.axvline(args.trueR0, color='steelblue', ls='--')
