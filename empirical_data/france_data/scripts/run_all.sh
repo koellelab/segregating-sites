@@ -105,6 +105,11 @@ grep ">" ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_lar
     | cut -d'|' -f 2 > ${FranceSeqs%.fasta}_match_largest_seqs_ids.tsv
 
 
+# how many of these are in Danesh et al (this is their supplementary table) https://doi.org/10.1101/2020.06.03.20119925
+comm -12 \
+    <(sort ${FranceSeqs%.fasta}_match_largest_seqs_ids.tsv) \
+    <(grep "Yes" data/2020.06.03.20119925-1.tsv | awk -F'\t' '{print $1}' | sed 's/"//g' | sort) | wc -l
+
 # --------------------------------------------------------------------------------------#
 # //// 4. CALCULATE SEGREGATING SITES OF FRANCE DATA ////
 # --------------------------------------------------------------------------------------#
@@ -254,11 +259,5 @@ python3 scripts/plot_tree.py \
     --trees data/france_random_global_ref_aligned_refine.nwk data/france_random_global_ref_aligned_refine_time.nwk \
     --outName data/france_trees \
     --distDat ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_EPI_ISL_402125.tsv
-
-
-python3 scripts/plot_empirical_data.py \
-    --sDat ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
-    --metadata ${FranceSeqs%.fasta}_date_country.csv \
-    --outName ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s
 
 
