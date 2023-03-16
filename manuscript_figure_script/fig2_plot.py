@@ -82,8 +82,8 @@ def n_segregating_over_time(ax, data):
 def sampling_prop_over_time(ax, data):
 
     data = data.loc[~np.isnan(data['s'])]
-    print(data)
-    print("\n\n\n\n")
+    #print(data)
+    #print("\n\n\n\n")
 
     ax.plot   (data['window_end'], data['n'] / data['n_recovered_in_win'], c="k", linestyle = "--", linewidth = 0.7)
     ax.scatter(data['window_end'], data['n'] / data['n_recovered_in_win'], c="k", s=8, marker = "s")
@@ -158,6 +158,9 @@ def run(dir_simulated_dataset, dir_likelihood_randsearch, true_param, xlim, ylim
     ## (C) Likelihood at t0 = 0
     n_iter_per_cell=20
     df_randsearch, df = read_and_get_mean_llk(dir_likelihood_randsearch, ['R0'], n_iter_per_cell, return_original=True)  # 19np.inf)
+    print(df_randsearch[df_randsearch.sim_no < n_iter_per_cell].to_string())
+
+
     axes[2].scatter(df['R0'], df['logL'], edgecolors="grey", s=6, facecolors='none', alpha=0.3)
     axes[2].plot   (df_randsearch['R0'], df_randsearch['mean_logL'], linewidth=1, c="k")
 
@@ -172,8 +175,8 @@ def run(dir_simulated_dataset, dir_likelihood_randsearch, true_param, xlim, ylim
     axes[3].set_ylabel("Sampling\nproportion")
     axes[3].set_xlabel("Days post index case")
 
-    axes[3].set_yticks([0, 0.02, 0.04, 0.06, 0.08])
-    axes[3].set_ylim([-0.01, 0.1])
+    axes[3].set_yticks(np.arange(0.01, 0.051, 0.01))
+    axes[3].set_ylim([-0.01, 0.05])
     axes[3].tick_params(axis='y', which='major', labelsize=8)
 
     axes[1].set_xlabel("Days post index case")
@@ -213,7 +216,6 @@ def run(dir_simulated_dataset, dir_likelihood_randsearch, true_param, xlim, ylim
     txt.close()
 
     ## save figure
-    fig.suptitle(figname)
     fig.tight_layout(pad=0.5)
     fig.savefig(f'manuscript figures/pdf/{figname}.pdf')
     fig.savefig(f'manuscript figures/png/{figname}.png')

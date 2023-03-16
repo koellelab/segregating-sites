@@ -158,7 +158,7 @@ def run(axes = None, metadata = None, logFile = None, argv=[]):
 
     # density
     sns.kdeplot(data=plot_dat, x=args.plotParams[0], y=args.plotParams[1], ax=ax2,
-    	levels=[0.05, 0.25, 0.5, 0.75, 0.95], color='firebrick', linestyles='--')#, bw_adjust=0.1)
+        levels=[0.05], color='firebrick', linestyles='--')#, bw_adjust=0.1)
     # lines for true value
     #ax2.axhline(args.trueT0, color='steelblue', ls='--')
     ax2.axvline(args.trueR0, color='steelblue', ls='--')

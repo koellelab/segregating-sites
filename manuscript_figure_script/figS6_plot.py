@@ -27,7 +27,8 @@ def run (args):
 
         ## (C) Likelihood at t0 = 0
         df_randsearch, df = read_and_get_mean_llk(dir_likelihood_randsearch, ['R0'], args.n_iter_per_cell, return_original=True)  # 19np.inf)
-        df_randsearch.to_csv(dir_likelihood_randsearch + "/meanllk.tsv", sep="\t", index=False)
+        #df_randsearch.to_csv(dir_likelihood_randsearch + "/meanllk.tsv", sep="\t", index=False)
+        df_randsearch.to_csv(dir_likelihood_randsearch + "_meanllk.tsv", sep="\t", index=False)
 
         axes[2, i].scatter(df['R0'], df['logL'], edgecolors="grey", s=6, facecolors='none', alpha=0.3)
         axes[2, i].plot(df_randsearch['R0'], df_randsearch['mean_logL'], linewidth=1, c="k")
@@ -35,11 +36,12 @@ def run (args):
         mle_and_CI = get_MLE_and_CI(df_randsearch, 'R0', MA=False)
         plot_MLE_and_CI(axes[2, i], mle_and_CI, 'R0')
         axes[2, i].axvline(x=args.true_param, linewidth=1, ls='--')  ## true value
-
+        ML = mle_and_CI[0]['mean_logL']
         # ---------------------------
         ## set axis
         axes[2, i].set_xlabel("Days post index case")
         axes[2, i].set_xlim([0.95, 2.55])
+        axes[2, i].set_ylim([ML -50, ML+7])
         axes[2 ,i].xaxis.set_major_locator(FixedLocator(np.arange(1.0, 2.5, 0.5).tolist() + [2.5]))
         axes[2 ,i].xaxis.set_minor_locator(FixedLocator(np.arange(1.0, 2.5, 0.1).tolist() + [2.5]))
 

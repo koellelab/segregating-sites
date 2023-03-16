@@ -31,7 +31,7 @@ def extract_statevar_and_segsite(dir, n_patricle_to_extract):
             trim_statevar = (convert_to_matlab_date("2019/12/24") <= particle[0][:, 0])
             statevar.append(particle[0][trim_statevar])
 
-            print(statevar[-1][:5, :])
+
 
             tmp_infected_outside = np.array(particle[-1])
             trim_infected = (convert_to_matlab_date("2019/12/24") <= tmp_infected_outside[:, 0])
@@ -65,8 +65,9 @@ def run(args):
 
 
         cum_R = []
-        total_infected = []
-        for j in np.random.choice(len(df_n_segregating), size=10):
+        infected_from_outside = []
+        #for j in np.random.choice(len(df_n_segregating), size=10):
+        for j in range(len(df_n_segregating)):
             n_segregating_over_time(axes[0, i], df_n_segregating[j], particle=True)
 
             df_state = df_particle_statevar[j]
@@ -79,16 +80,18 @@ def run(args):
             axes[2, i].plot(df_state[:, 0], state_cumR, c="k", alpha=0.1, label="_nolegend_")
             axes[3, i].plot(infected_outside[j][:, 0], infected_outside[j][:, 1].cumsum(), c="k", alpha=0.1, label="_nolegend_")
 
-             # print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-             #        df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
-             #        convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
-             #        infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
+            print (convert_to_caldate(df_state[:, 0][state_all_infected>0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+                     df_state[:, 2:-1].sum(axis=1)[state_all_infected>0][0],
+                     convert_to_caldate(infected_outside[j][:, 0][infected_outside[j][:,1].cumsum() > 0][0]).replace("2020/\n", "").replace("2019/\n", ""),
+                     infected_outside[j][:, 1].cumsum()[infected_outside[j][:, 1].cumsum() > 0][0])
 
             ## save for printing
             filter = (df_state[:, 0] < 737864 + 0.0001) * ( 737864 - 0.0001 < df_state[:, 0])
-            total_infected.append(state_all_infected[filter][0])
             cum_R.append(state_cumR[filter][0])
 
+            filter = (infected_outside[j][:, 0] >= convert_to_matlab_date("2020/02/22") -0.01) *\
+                     (infected_outside[j][:, 0] <  convert_to_matlab_date("2020/02/22") +0.01)
+            infected_from_outside.append(infected_outside[j][:, 1].cumsum()[filter])
 
 
         ## Observed segregating site & serology data
@@ -99,9 +102,13 @@ def run(args):
         axes[2, i].scatter ([737864], [0.0041*100], color="black", s=7)
 
         ## print
-        print(f"{min(cum_R):.3f}%, {max(cum_R):.3f}", file=txt)
-        print(f"{min(cum_R):.3f}%, {max(cum_R):.3f}")
+        print(f"prop_cumR: {min(cum_R):.3f}%, {max(cum_R):.3f}", file=txt)
+        print(f"prop_cumR: {min(cum_R):.3f}%, {max(cum_R):.3f}")
+        print(f"infection_from_outside: {min(infected_from_outside)}, {max(infected_from_outside)}", file=txt)
+        print(f"infection_from_outside: {min(infected_from_outside)}, {max(infected_from_outside)}")
         print ("-----", file=txt)
+
+
 
         ## set axis ticks & axis tick labels
         xticks_segregating = df_simulated_dataset.loc[~np.isnan(df_simulated_dataset['s'])]['window_end']

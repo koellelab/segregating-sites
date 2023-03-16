@@ -34,14 +34,15 @@ case $1 in
         --llk_rand            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0 \
         --true_param          1.6 \
         --xlim                1 2.5 \
-        --figname             figure2_R0=16e-1_seed1234
+        --ylim                -100 -75 \
+        --figname             figure2
 
     ;;
 
   fig3)
     python $PEM_PATH/fig3_plot.py \
       --llk_2dgrid          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0,timestart \
-      --figname             figure3_R0=16e-1_seed1234_full \
+      --figname             figure3 \
       --phydyn_meta         simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_sampling.tsv \
       --phydyn_log          simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/simpleSEIR_R0=16e-1_mu2e-1_seed201234_prop500_win4.log
 
@@ -51,28 +52,24 @@ case $1 in
     python $PEM_PATH/fig4_plot.py \
         --true_sim            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
         --true_segregating    simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_segsites.tsv \
-        --reconstructed       simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_reconstruct \
-        --figname             figure4_R0=16e-1_seed1234_reconstructed
+        --reconstructed       simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_reconstruct_R0,timestart \
+        --figname             figure4
+
 
     ;;
 
   fig5)
   python $PEM_PATH/fig5_plot.py \
-        --figname             figure5_R0=16e-1_seed1234 \
+        --figname             figure5 \
         --params              R0 timestart \
         --true_params         1.6 0 \
         --n_iter_per_cell     20 \
         \
-        --simul_data_lowmu    simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_segsites.tsv \
-        --llk_2dgrid_lowmu    simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_gridsearch_R0,timestart \
-        --simul_data_highmu   simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_segsites.tsv \
-        --llk_2dgrid_highmu   simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_gridsearch_R0,timestart\
+        --simul_data          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_segsites.tsv \
+        --llk_2dgrid          simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_gridsearch_R0,timestart \
         \
-        --phydyn_log_lowmu    simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.log \
-        --phydyn_meta_lowmu   simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv \
-        --phydyn_log_highmu   simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu4e-1_seed221110_unif10_win4_32-52.log \
-        --phydyn_meta_highmu  simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_unif10_win4_32-52/seed230201_sampling.tsv
-
+        --phydyn_log          simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/simpleSEIR_R0=16e-1_mu2e-1_seed1234_unif10_win4_32-52.log \
+        --phydyn_meta         simulated_data/phydyn_analysis/data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif10_win4_32-52/seed230201_sampling.tsv \
     ;;
 
   fig6)
@@ -157,7 +154,8 @@ case $1 in
         --llk_rand            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop100_win4/seed1234001_gridsearch_R0 \
         --true_param          1.6 \
         --xlim                1 2.5 \
-        --figname             figureS4_R0=16e-1_seed1234
+        --ylim                -65 -45 \
+        --figname             figureS4
     ;;
 
   figS5)  ## 1D log-likelhood with unif
@@ -166,7 +164,8 @@ case $1 in
         --llk_rand            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif13_win4/seed1234001_gridsearch_R0 \
         --true_param          1.6 \
         --xlim                1 2.5 \
-        --figname             figureS5_R0=16e-1_seed1234
+        --ylim                -140 -122 \
+        --figname             figureS5
 
     ;;
 
@@ -185,7 +184,7 @@ case $1 in
                               simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin10/seed230201/seed1234001_gridsearch_R0 \
         --true_param          1.6 \
         --xlim                1 2.5 \
-        --figname             figureS6_R0=16e-1_seed1234 \
+        --figname             figureS6 \
         --n_iter_per_cell     20
 
 
@@ -196,20 +195,18 @@ case $1 in
         --particle_data       simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_showparticles_R0,timestart/seed202302.tsv \
         --true_sim            simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
         --true_data           simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_segsites.tsv \
-        --figname             figureS7_R0=17e-1_timestart=16
+        --figname             figureS7
     ;;
 
+#
+#  figS8)
+#    python $PEM_PATH/figS8_plot.py \
+#        --figname       figureS8 \
+#        --dir_default   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
+#        --dir_high      simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_statevar.tsv
+#    ;;
 
   figS8)
-    python $PEM_PATH/figS8_plot.py \
-        --figname       figureS8 \
-        --dir_default   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_simtaj.npz \
-        --dir_high      simulated_data/simpleSEIR_R0=16e-1_mu4e-1/seed221110_statevar.tsv
-
-
-    ;;
-
-  figS9)
     ## copied from empirical_data/france_data/scripts/run_all.sh
     cd $PEM_PATH/../empirical_data/france_data
     FranceSeqs=data/gisaid_hcov-19_2021_04_29_16.fasta
@@ -222,16 +219,16 @@ case $1 in
         --metadata  data/metadata.tsv \
         --trees     data/france_random_global_ref_aligned_refine.nwk data/france_random_global_ref_aligned_refine_time.nwk \
         --distDat   ${FranceSeqs%.fasta}_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_EPI_ISL_402125.tsv \
-        --outName   "../../manuscript figures/figureS9"
+        --outName   "../../manuscript figures/figureS8"
 
 
 
     ;;
 
 
-  figS12)
+  figS11)
     python $PEM_PATH/figS12_plot.py \
-        --figname       figureS12 \
+        --figname       figureS11 \
         --dir_data      empirical_data/france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s_unambig.tsv \
                         empirical_data/france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s.tsv \
                         empirical_data/france_data/data/gisaid_hcov-19_2021_04_29_16_ref_aligned_ref_filtered_masked_noref_cc_match_largest_seqs_s_none.tsv

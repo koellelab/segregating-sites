@@ -97,7 +97,7 @@ def plot_data(s_dat, mu_dat, mu_est, out_name):
 	ax3.set_ylim(-0.03, 1.03)
 	ax3.legend()
 	for ax_idx, ax in enumerate([ax1, ax2, ax3]):
-		ax.text(-0.15, 1.05, string.ascii_uppercase[ax_idx], transform=ax.transAxes, 
+		ax.text(-0.15, 1.05, string.ascii_lowercase[ax_idx], transform=ax.transAxes,
 			size=16, weight='bold', va="top")
 
 	try:

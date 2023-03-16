@@ -157,14 +157,8 @@ def plot_joint_estimation_95CI(ax, fig,  df_surface, params, trueparam, gamma, t
 
 def run(dir_llk_2Dgrid, dir_phydyn_density_metadata, dir_phydyn_density_logFile, figname):
 
-    #dir_llk_2Dgrid = "../simulated_data/simpleSEIR_R0=24e-1_mu2e-1/seed20230127_prop500_win2/seed230127_gridsearch_R0,timestart"
-    #dir_llk_2Dgrid = "../simulated_data/simpleSEIR_R0=24e-1_mu2e-1/seed20230127_unif10_win2_20-36/seed230127_gridsearch_R0,timestart"
-#    dir_llk_2Dgrid = "../simulated_data/simpleSEIR_R0=24e-1_mu4e-1/seed20230127_unif10_win2_20-36/seed230127_gridsearch_R0,timestart"
-
-    #dir_phydyn_density_metadata = "../simulated_data/simpleSEIR_R0=24e-1_mu2e-1/seed20230127_prop500_win2/seed230127_segsites.tsv"
-    #dir_phydyn_density_logFile  = "../manuscript_figures_data/fig3/phydyn_result_mm0427/SEIR_simple_prop500_0928_seed123.log"
     # ---------------------------
-    plt.rcParams.update({'font.size': 7})
+    plt.rcParams.update({'font.size': 10})
     fig = plt.figure(figsize=[9, 4], constrained_layout=True, dpi = 300)
 
     gs0 = fig.add_gridspec(1, 2, width_ratios=[0.9, 1], wspace=8)
@@ -179,53 +173,14 @@ def run(dir_llk_2Dgrid, dir_phydyn_density_metadata, dir_phydyn_density_logFile,
     # ---------------------------
     ## panel A
     n_iter_per_cell = 20; df = 2
-    df_2Dgrid_mean = read_and_get_mean_llk(dir_llk_2Dgrid, ['R0', 'timestart'], n_iter_per_cell)#19np.inf)
-    df_2Dgrid_mean = df_2Dgrid_mean[df_2Dgrid_mean.timestart % 2 == 0]
-
+    df_2Dgrid_mean = read_and_get_mean_llk(dir_llk_2Dgrid, ['R0', 'timestart'], n_iter_per_cell)
     df_2Dgrid_mean.to_csv(dir_llk_2Dgrid + "/meanllk.tsv", sep = "\t", index = False)
 
     df_2Dgrid_mean.mean_logL = np.where(~np.isinf(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
     df_2Dgrid_mean.mean_logL = np.where(~np.isnan(df_2Dgrid_mean.mean_logL), df_2Dgrid_mean.mean_logL, 1e5)
     df_2Dgrid_mean.mean_logL = np.where(df_2Dgrid_mean.sim_no == n_iter_per_cell, df_2Dgrid_mean.mean_logL, np.nan)
 
-    #df_2Dgrid_mean = df_2Dgrid_mean[df_2Dgrid_mean.R0 <  2.5]
-
-    ### change x and y axis
-    if False:
-        from itertools import product
-        ranges = [np.arange(1.0, 3.01, 0.1),
-                  np.arange(4, -44.01, -2)]
-        combos = list(product(*ranges))
-
-        idx_combo = []
-        for i, combo in enumerate(combos):
-            bool_combo = \
-                np.isclose(np.full_like(df_2Dgrid_mean.R0, combo[0]), df_2Dgrid_mean.R0) * \
-                np.isclose(np.full_like(df_2Dgrid_mean.timestart, combo[1]), df_2Dgrid_mean.timestart)
-
-            if bool_combo.sum() > 0:
-                continue
-            else:
-                idx_combo.append(i)
-
-        df2 = pd.DataFrame({'R0':        [combos[i][0] for i in idx_combo],
-               'timestart': [combos[i][1] for i in idx_combo]})
-
-        df_2Dgrid_mean = df_2Dgrid_mean.append(df2, ignore_index=True)
-
-
-
-        print(df_2Dgrid_mean.R0)
-        df_2Dgrid_mean = df_2Dgrid_mean.loc[(df_2Dgrid_mean.R0 > np.min(ranges[0])) * \
-                                        (df_2Dgrid_mean.R0 < np.max(ranges[0])) * \
-                                        (df_2Dgrid_mean.timestart > np.min(ranges[1])) * \
-                                        (df_2Dgrid_mean.timestart < np.max(ranges[1]))]
-        print(df_2Dgrid_mean.to_string())
-
-
-    plot_joint_estimation_95CI(axes[0], fig, df_2Dgrid_mean, ['R0', 'timestart'], [1.6, 0],
-                               majortick = 5,
-                               gamma=12, tick=[-80, -90], df = df)
+    plot_joint_estimation_95CI(axes[0], fig, df_2Dgrid_mean, ['R0', 'timestart'], [1.6, 0], majortick = 5,gamma=12, tick=[-80, -90], df = df)
     
     ## axis
     axes[0].set_xlabel(r'$R_0$', fontsize=14)

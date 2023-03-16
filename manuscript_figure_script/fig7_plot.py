@@ -39,11 +39,6 @@ def run(args):
 
     plot_joint_estimation_95CI(axes[0], fig, df_2Dgrid_mean, ["R0", "timestart"], [np.nan, np.nan], gamma=20,  df = 2, majortick=5)
 
-
-    hey = df_2Dgrid_mean.pivot("timestart", "R0", values='sim_no')
-
-
-
     # ---------------------------
     ## label figure
     for i in range(1):

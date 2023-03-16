@@ -15,8 +15,9 @@ def run(args):
     mu_high = pd.read_csv(dir_high, sep="\t")
     default = np.load(dir_default, allow_pickle=True)['statevar']
 
-    plt.plot(mu_high.iloc[:, 0], mu_high.I, label='simulation for 5A')
-    plt.plot(default[:, 0], default[:, 2], label='simulation for 5D')
+
+    plt.plot(default[:, 0], default[:, 2], label='simulation for 5A')
+    plt.plot(mu_high.iloc[:, 0], mu_high.I, label='simulation for 5D')
     plt.xlabel('Days post index case')
     plt.ylabel('Number of infected individuals')
 

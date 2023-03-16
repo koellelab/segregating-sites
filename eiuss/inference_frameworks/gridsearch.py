@@ -64,7 +64,7 @@ def run(params, imported_data, config):
             last_combos += [x[:-1] for x in pkl.tolist() if not sum(x) == 0]
 
         combos = [list(x) for x in combos if not np.any([np.allclose(x,y) for y in last_combos])]
-        combos = sorted(combos, key=lambda x: (x[2], x[1]))
+        combos = sorted(combos, key=lambda x: (x[2], x[1]), reverse=True)
 
         params['out_name'] += '_continued' + str(len([x for x in files_done if x.find('_continued') > -1]))
         print("\n" + "- " * 30)

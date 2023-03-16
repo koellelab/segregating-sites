@@ -1,6 +1,9 @@
-0.024%, 1.051
+prop_cumR: 0.009%, 0.763
+infection_from_outside: [112.], [4428.]
 -----
-0.015%, 0.379
+prop_cumR: 0.012%, 2.044
+infection_from_outside: [78.], [6970.]
 -----
-0.030%, 0.810
+prop_cumR: 0.021%, 0.284
+infection_from_outside: [176.], [1540.]
 -----

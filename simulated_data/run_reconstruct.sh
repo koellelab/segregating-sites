@@ -43,5 +43,19 @@ case $1 in
     ;;
 
 
+  test)
+    python $PEM_PATH/../eiuss/eiuss.py reconstruct \
+        --config            simulated_data/configs/config_${simulname}.py \
+        --input             simulated_data/${simulname}/${dataname}_segsites.tsv \
+        --input_meanllk     simulated_data/${simulname}/${dataname}_gridsearch_R0,timestart/meanllk.tsv \
+        --operators         R0 timestart\
+        --n_SMC_particles   200 \
+        --n_grab            20 \
+        --n_reps            10 \
+        --n_save_particle   1 \
+        --seed              2023
+
+  ;;
+
   esac
 

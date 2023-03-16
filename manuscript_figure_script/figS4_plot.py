@@ -67,8 +67,8 @@ def n_sequence_over_time(ax, data):
 def n_segregating_over_time(ax, data):
 
     data = data.loc[~np.isnan(data['s'])]
-    print(data)
-    print("\n\n\n\n")
+    # print(data)
+    # print("\n\n\n\n")
 
     ax.plot(data['window_end'], data['s'], c="k")
     ax.scatter(data['window_end'], data['s'], c="k", s=15)
@@ -81,8 +81,8 @@ def n_segregating_over_time(ax, data):
 def sampling_prop_over_time(ax, data):
 
     data = data.loc[~np.isnan(data['s'])]
-    print(data)
-    print("\n\n\n\n")
+    # print(data)
+    # print("\n\n\n\n")
 
     ax.plot   (data['window_end'], data['n'] / data['n_recovered_in_win'], c="k", linestyle = "--", linewidth = 0.7)
     ax.scatter(data['window_end'], data['n'] / data['n_recovered_in_win'], c="k", s=8, marker = "s")
@@ -150,6 +150,7 @@ def run(dir_simulated_dataset, dir_likelihood_randsearch, true_param, xlim, ylim
     ## (C) Likelihood at t0 = 0
     n_iter_per_cell=20
     df_randsearch, df = read_and_get_mean_llk(dir_likelihood_randsearch, ['R0'], n_iter_per_cell, return_original=True)  # 19np.inf)
+    print(df_randsearch[df_randsearch.sim_no < n_iter_per_cell].to_string())
     axes[2].scatter(df['R0'], df['logL'], edgecolors="grey", s=6, facecolors='none', alpha=0.3)
     axes[2].plot   (df_randsearch['R0'], df_randsearch['mean_logL'], linewidth=1, c="k")
 
@@ -241,8 +242,8 @@ if __name__ == "__main__":
         os.chdir(os.getcwd().replace("manuscript_figure_script", ""))
         parser = argparse.ArgumentParser()
         args = parser.parse_args()
-        args.simul_data  = "simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_segsites.tsv"
-        args.llk_rand    = "simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0"
+        args.simul_data  = "simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop100_win4/seed1234001_segsites.tsv"
+        args.llk_rand    = "simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop100_win4/seed1234001_gridsearch_R0"
 
         args.figname = "figure2_R0=16e-1_seed1234"
         args.ylim = [-90, -72.5]

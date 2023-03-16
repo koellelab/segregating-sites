@@ -79,6 +79,26 @@ else      ## run from local
     ;;
 
 
+  test)
+    for simulname in "france_multiple_te=191224" "france_multiple_te=200101" "france_multiple_te=200108";do
+      python $PEM_PATH/../../eiuss/eiuss.py reconstruct \
+          --config            empirical_data/france_data/configs/config_${simulname}.py \
+          --input             empirical_data/france_data/data/${france_data} \
+          --input_meanllk     empirical_data/france_data/${simulname}/gridsearch_log10eta,R0/meanllk.tsv \
+          --outdir            empirical_data/france_data/${simulname} \
+          --operators         log10eta R0 \
+          --n_SMC_particles   200 \
+          --n_grab            20 \
+          --n_reps            10 \
+          --n_save_particle   1 \
+          --seed              202303
+
+    done
+
+
+
+
+
   esac
 
 fi

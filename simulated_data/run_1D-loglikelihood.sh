@@ -40,14 +40,42 @@ if [ $(pwd | grep ypar279 | wc -l) -eq 1 ];then   ## run from server
           --operators         R0\
           --range             "1.4:1.8:0.01"\
           --seed              202302${5}
+    ;;
 
+    run3)
+      simulname=$2          #"simpleSEIR_R0=16e-1_mu2e-1"
+      dataname=$3           #"seed1234_prop500_win4/seed230201"
+      python $PEM_PATH/eiuss/eiuss.py gridsearch \
+          --config            simulated_data/configs/config_${simulname}.py \
+          --input             simulated_data/${simulname}/${dataname}_segsites.tsv \
+          --n_SMC_particles   200 \
+          --n_grab            20 \
+          --n_reps            20 \
+          --operators         R0\
+          --range             "${4}:${5}:0.01"\
+          --seed              202302${6}
+    ;;
+
+    run4)
+      simulname=$2          #"simpleSEIR_R0=16e-1_mu2e-1"
+      dataname=$3           #"seed1234_prop500_win4/seed230201"
+      python $PEM_PATH/eiuss/eiuss.py gridsearch \
+          --config            simulated_data/configs/config_${simulname}.py \
+          --input             simulated_data/${simulname}/${dataname}_segsites.tsv \
+          --n_SMC_particles   200 \
+          --n_grab            20 \
+          --n_reps            4 \
+          --operators         R0\
+          --range             "${4}:${5}:0.01"\
+          --seed              202302${6}
+  ;;
   esac
 
 else          ## run from local
   case $1 in
     ready)
-      #sh ../run_remote.sh   bio_ready simulated_data/run_1D-loglikelihood
-      sh ../run_remote.sh  rsph_ready simulated_data/run_1D-loglikelihood
+      sh ../run_remote.sh   bio_ready simulated_data/run_1D-loglikelihood
+      #sh ../run_remote.sh  rsph_ready simulated_data/run_1D-loglikelihood
       ;;
 
     run)
@@ -93,6 +121,49 @@ else          ## run from local
 #      sh ../run_remote.sh  rsph_run ../session_2023-02-28.log 'for i in {25..29}  ;do sbatch simulated_data/run_1D-loglikelihood_server.sh   run2 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 2 ${i}; done'
 #      sh ../run_remote.sh  rsph_run ../session_2023-02-28.log 'for i in {30..34}  ;do sbatch simulated_data/run_1D-loglikelihood_server.sh   run2 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 3 ${i}; done'
 #      sh ../run_remote.sh  rsph_run ../session_2023-02-28.log 'for i in {35..39}  ;do sbatch simulated_data/run_1D-loglikelihood_server.sh   run2 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 4 ${i}; done'
+
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4/seed230201"  1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop100_win4/seed1234001" 1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_unif13_win4/seed1234001"  1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin2/seed230201/seed1234001"  1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin6/seed230201/seed1234001"  1.25 1.4 100'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 1.25 1.4 100'
+
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4/seed230201"  1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop100_win4/seed1234001" 1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_unif13_win4/seed1234001"  1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin2/seed230201/seed1234001"  1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin6/seed230201/seed1234001"  1.8 2.0 101'
+#      sh ../run_remote.sh  rsph_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 1.8 2.0 101'
+
+
+      #sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'for i in {00..24};do  sbatch simulated_data/run_1D-loglikelihood_server.sh run3 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop100_win4/seed1234001" 2.${i} 2.${i}1 1${i}; done'
+      #sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.8 2.0 102'
+
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4/seed230201"  1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop100_win4/seed1234001" 1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_unif13_win4/seed1234001"  1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin2/seed230201/seed1234001"  1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin6/seed230201/seed1234001"  1.8 1.9 102'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 1.8 1.9 102'
+#
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4/seed230201"  1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop100_win4/seed1234001" 1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_unif13_win4/seed1234001"  1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin2/seed230201/seed1234001"  1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin6/seed230201/seed1234001"  1.9 2.0 103'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin10/seed230201/seed1234001" 1.9 2.0 103'
+#
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.8 1.9 104'
+#      sh ../run_remote.sh  bio_run   ../session_2023-03-14.log  'sbatch simulated_data/run_1D-loglikelihood_server.sh run4 "simpleSEIR_R0=16e-1_mu2e-1" "seed1234_prop500_win4_resetwin1/seed230201/seed1234001"  1.9 2.0 105'
+#
+#
+#
+
       ;;
 
 
@@ -102,6 +173,10 @@ else          ## run from local
 #      sh run_remote.sh  rsph_download   simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif13_win4/seed1234001_gridsearch_R0
 
       ## for figure S6 ---------------------
+      sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4/seed230201_gridsearch_R0
+      sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop100_win4/seed1234001_gridsearch_R0
+      sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_unif13_win4/seed1234001_gridsearch_R0
+
       sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin1/seed230201
       sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin2/seed230201
       sh ../run_remote.sh  rsph_download   simulated_data/simpleSEIR_R0=16e-1_mu2e-1/seed1234_prop500_win4_resetwin6/seed230201
